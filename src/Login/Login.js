@@ -79,7 +79,6 @@ const handleSubmit = async (e) => {
 
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data.jwtToken)
       setIsLoading(false);
 
       if (response.ok) {

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, navigate } from "react";
 import Cookies from "js-cookie";
 import React from "react";
 import "./Portfoliomanager.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
 import PortfolioManagerDashboard from "../Portfoliodashboard/Portfoliodashboard";
 import { API_BASE_URL } from "../../config";
@@ -22,6 +22,7 @@ function Portfolio() {
       if (!token) {
         setError("No authentication token found.");
         setLoading(false);
+        navigate("/login")
         return;
       }
 
@@ -115,7 +116,7 @@ function Portfolio() {
             <p>Overall Gain</p>
             <h3 className="finance-negative-gain">
               ₹{(unRealizedGains - 0).toLocaleString()} (
-              {((unRealizedGains / myInvestment) * 100).toFixed(2)}%)
+                {myInvestment !== 0 ? ((unRealizedGains / myInvestment) * 100).toFixed(2) : "0.00"}%)
             </h3>
             <p>Today's Gain</p>
             <h3 className="finance-negative-gain">₹0 (0%)</h3>

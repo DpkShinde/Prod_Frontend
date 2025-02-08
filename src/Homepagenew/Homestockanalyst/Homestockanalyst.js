@@ -4,6 +4,7 @@ import Navbar from "../../Navbar/Navbar";
 import './Homestockanalyst.css';
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
+import Cookies from "js-cookie";
 
 const Homestockanalyst = () => {
 
@@ -14,14 +15,21 @@ const Homestockanalyst = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [stocksPerPage] = useState(5); 
+  const [stocksPerPage] = useState(10); 
   const navigate = useNavigate();
  
   // Function to fetch data from the backend
   const fetchData = async () => {
     try {
       setLoading(true); 
-      const response = await fetch(`${API_BASE_URL}/stocksScreener/sectorAnalyst`); 
+      const token = Cookies.get("jwtToken");
+      const response = await fetch(`${API_BASE_URL}/stocksScreener/sectorAnalyst`, {
+        method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+      }); 
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }

@@ -10,6 +10,7 @@ import icon6 from '../../assest/l.svg';
 import icon7 from '../../assest/message.svg';
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
+import Cookies from "js-cookie";
 
 // Data for the cards and table
 const DashboardPagetable = [
@@ -36,7 +37,14 @@ const DashboardMainPagetable = () => {
     const fetchData = async () => {
       try {
         setLoading(true); 
-        const response = await fetch(`${API_BASE_URL}/stocksScreener/stockSector`); 
+        const token = Cookies.get("jwtToken");
+        const response = await fetch(`${API_BASE_URL}/stocksScreener/stockSector`, {
+          method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        }); 
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
