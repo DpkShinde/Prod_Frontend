@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   FaBell,
   FaUserCircle,
@@ -30,6 +30,7 @@ import logo from "../assest/Logo design (1).png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchData } from "../Store/Slices/searchDataSlice";
+import { debounce } from "lodash";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -174,33 +175,44 @@ const Navbar = () => {
     getAllData();
   }, []);
 
-  //search keyword using redux store
+  //Search data from store with using debounce
+  const debounceSearch = useCallback(
+    debounce((searchText) => {
+      // Check if searchText is not empty
+      if (searchText) {
+        // Filter the data from the store based on searchText
+        const results = getDataFromStore.filter((item) => {
+          // Convert company, Scheme_Name, and sector to lowercase for case-insensitive comparison
+          const company = item.company ? item.company.toLowerCase() : "";
+          const schemeName = item.Scheme_Name
+            ? item.Scheme_Name.toLowerCase()
+            : "";
+          const sector = item.sector ? item.sector.toLowerCase() : "";
+
+          return (
+            // Check if searchText is included in any of the fields
+            company.includes(searchText.toLowerCase()) ||
+            schemeName.includes(searchText.toLowerCase()) ||
+            sector.includes(searchText.toLowerCase())
+          );
+        });
+        // Update the filtered data state with the results
+        setFilterData(results);
+      } else {
+        // If searchText is empty, clear the filtered data
+        setFilterData([]);
+      }
+    }, 300),
+    [getDataFromStore] // Dependency array for useCallback
+  );
+
+  // Effect to call the debounced function when input changes
   useEffect(() => {
-    // Check if searchInputText is not empty
-    if (searchInputText) {
-      // Filter the data based on the search input
-      const results = getDataFromStore.filter((item) => {
-        // Convert company name, scheme name, and sector to lowercase for comparison
-        const company = item.company ? item.company.toLowerCase() : "";
-        const Scheme_Name = item.Scheme_Name
-          ? item.Scheme_Name.toLowerCase()
-          : "";
-        const sector = item.sector ? item.sector.toLowerCase() : "";
-        return (
-          // Check if any of the fields include the search input
-          company.includes(searchInputText.toLowerCase()) ||
-          Scheme_Name.includes(searchInputText.toLowerCase()) ||
-          sector.includes(searchInputText.toLowerCase())
-        );
-      });
-      // Update the filtered data state
-      setFilterData(results);
-      console.log(filterData);
-    } else {
-      // If search input is empty, clear the filtered data
-      setFilterData([]);
-    }
-  }, [searchInputText, getDataFromStore]);
+    // Call the debounced search function with the current searchInputText
+    debounceSearch(searchInputText);
+    // Cleanup function to cancel the debounced function to prevent unnecessary calls
+    return () => debounceSearch.cancel();
+  }, [searchInputText, debounceSearch]);
 
   const toggleStockDropdown = () => {
     setStockDropdownOpen(!stockDropdownOpen);
