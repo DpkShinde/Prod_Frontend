@@ -1,11 +1,10 @@
 /* Container for the entire layout */
 .dataquatallnifty {
     display: flex;
-   
-    margin-left: 170px;
+    justify-content: center;
     gap: 30px;
     font-family: 'calibri';
- }
+  }
  .portfoliomutual-containerrnifty {
      font-family: 'calibri';
      padding: 20px;
@@ -40,7 +39,7 @@
      
  }
  .allhead{
-    margin-top: 230px;
+    margin-top: 300px;
     font-family: 'calibri';
  }
  .headernifty50{
@@ -50,12 +49,22 @@
     font-family: 'calibri';
  }
  /* Mobile View for 768px */
+ @media (max-width:1300px)
+ {
+    .dataquatallnifty{
+        flex-direction: column;
+        align-items: center;
+      
+    }
+
+ }
 @media (max-width: 768px) {
     .dataquatallnifty {
         flex-direction: column;
         margin-left: 20px;
         gap: 20px;
-    }
+        
+       }
 
     .portfoliomutual-containerrnifty {
         width: 90%;
@@ -77,13 +86,13 @@
     }
 
     .headernifty50 {
-        margin-left: 20px;
+        margin-left: 15%;
         font-size: 18px;
         margin-top: 250px;
     }
 
     .allhead {
-        margin-top: 180px;
+        margin-top: 250px;
     }
 }
 
@@ -116,7 +125,7 @@
     }
 
     .headernifty50 {
-        margin-left: 20px;
+        margin-left: 15%;
         font-size: 18px;
         margin-top: 250px;
     }

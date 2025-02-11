@@ -179,7 +179,7 @@ font-weight: bold;
 }
 .dropdownOptions {
   position: absolute;
-
+ 
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -420,14 +420,14 @@ font-weight: bold;
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
 .dropdownOptions {
-
+  right: 50px;
   cursor: pointer;
   background-color: #f9f9f9;
   color: black;
-  width: 68px;
+  width: 140px;
 }
 .dropdownOption {
-
+  white-space: nowrap;
   cursor: pointer;
   background-color: #f9f9f9;
   color: black;

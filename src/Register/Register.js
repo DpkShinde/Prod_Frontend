@@ -196,7 +196,7 @@ function Register() {
                          startIcon={<FcGoogle style={{fontSize:"26px"}} />}
                          component="a"
                          href="https://accounts.google.com/signin"
-                         style={{ textTransform: "none" }}
+                         style={{ textTransform: "none", width: "100%"  }}
                        >
                          Continue with Google
                        </Button>
@@ -208,7 +208,7 @@ function Register() {
                          startIcon={<FaLinkedin style={{fontSize:"26px"}}/>}
                          component="a"
                          href="https://www.linkedin.com/feed/"
-                         style={{ textTransform: "none" }}
+                         style={{ textTransform: "none", width: "100%"  }}
                        
                        >
                          Continue with LinkedIn

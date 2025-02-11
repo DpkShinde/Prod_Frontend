@@ -1,52 +1,47 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import AddSIPForm from "../AddSIPFormstock/AddSIPFormstock"; // Adjust path as needed
-import { API_BASE_URL } from "../../config";
-import Cookies from "js-cookie";
+
 
 const AddTransactionstock = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Access the transaction to be edited, if passed via state
+  // Access the transaction to be edited passed via state
   const transaction = location.state?.transaction;
 
-  // Initial State Setup
-  const [transactionData, setTransactionData] = useState(
+  // Initialize state for the editable transaction
+  const [editedTransaction, setEditedTransaction] = useState(
     transaction || {
       type: "Buy",
-      stock_name: "",
+      stockName: "",
       exchange: "NSE",
       date: "",
       quantity: 0,
       price: 0,
       amount: 0,
-      net_amount: 0,
-      total_charges: 0,
+      netAmount: 0,
+      totalCharges: 0,
       notes: "",
       showSIP: false,
     }
   );
 
   // Handle input changes dynamically
-  const handleInputChange = (e) => {
-    let { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-    if (name === "quantity" || name === "price") {
-      value = Number(value);
-      if (value < 0) return; // Prevent negative values
-    }
-
-    setTransactionData((prev) => {
+    setEditedTransaction((prev) => {
       const updatedTransaction = { ...prev, [name]: value };
 
-      // Auto-calculate dependent fields
+      // Recalculate dependent fields if quantity or price changes
       if (name === "quantity" || name === "price") {
-        const quantity = Number(updatedTransaction.quantity) || 0;
-        const price = Number(updatedTransaction.price) || 0;
-        updatedTransaction.amount = quantity * price;
-        updatedTransaction.net_amount = updatedTransaction.amount;
-        updatedTransaction.total_charges = updatedTransaction.net_amount; // Modify if extra charges apply
+        const quantity = Number(updatedTransaction.quantity || 0);
+        const price = Number(updatedTransaction.price || 0);
+
+        updatedTransaction.amount = quantity * price; // Fixed calculation
+        updatedTransaction.netAmount = updatedTransaction.amount;
+        updatedTransaction.totalCharges = updatedTransaction.netAmount; // Adjust if additional charges logic is needed
       }
 
       return updatedTransaction;
@@ -54,47 +49,28 @@ const AddTransactionstock = () => {
   };
 
   // Handle save action
-  const handleAddTransaction = async () => {
-    try {
-      const token = Cookies.get("jwtToken");
-      if (!token) {
-        alert("Authentication required. Please log in.");
-        return;
-      }
-
-      const response = await fetch(`${API_BASE_URL}/myportfolio/addStock`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(transactionData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to add transaction");
-      }
-
-      const result = await response.json();
-      console.log("Transaction added successfully:", result);
-
-      // Navigate after successful save
-      navigate("/portfoliostockaccount", {
-        state: { updatedTransaction: transactionData },
-      });
-    } catch (error) {
-      console.error("Error adding transaction:", error);
-      alert(error.message);
-    }
+  const handleSave = () => {
+    navigate("/portfoliostockaccount", {
+      state: { updatedTransaction: editedTransaction },
+    });
   };
 
   // Handle cancel action
-  const handleCancel = () => navigate("/portfoliostockaccount");
+  const handleCancel = () => {
+    navigate("/portfoliostockaccount");
+  };
 
   // Toggle SIP form visibility
-  const handleToggleSIP = () => {
-    setTransactionData((prev) => ({ ...prev, showSIP: !prev.showSIP }));
+  const toggleSIPForm = () => {
+    setEditedTransaction((prev) => ({
+      ...prev,
+      showSIP: !prev.showSIP,
+    }));
+  };
+
+  // Reset form to initial transaction state
+  const resetForm = () => {
+    setEditedTransaction(transaction);
   };
 
   return (
@@ -110,12 +86,16 @@ const AddTransactionstock = () => {
           <div className="transaction-row">
             {/* Transaction Type */}
             <label>
-              <p1 style={{ marginLeft: "49px" }}>Type</p1><br />
+              <p1 style={{ marginLeft: "49px" }}> Type</p1><br/>
               <select
                 name="type"
-                value={transactionData.type}
-                onChange={handleInputChange}
-                style={{ width: "80px", height: "30px", marginLeft: "50px" }}
+                value={editedTransaction.type}
+                onChange={handleChange}
+                style={{
+                  width: "80px",
+                  height: "30px",
+                  marginLeft: "50px",
+                }}
                 className="transaction-input"
               >
                 <option value="Buy">Buy</option>
@@ -125,19 +105,19 @@ const AddTransactionstock = () => {
 
             {/* Stock Name */}
             <label>
-              Stock Name<br />
+              Stock Name<br/>
               <input
                 type="text"
-                name="stock_name"
-                value={transactionData.stock_name}
-                onChange={handleInputChange}
+                name="stockName"
+                value={editedTransaction.stockName}
+                onChange={handleChange}
                 className="transaction-input"
               />
             </label>
 
             {/* Exchange */}
             <label>
-              Exchange<br />
+              Exchange<br/>
               <input
                 type="text"
                 name="exchange"
@@ -153,22 +133,19 @@ const AddTransactionstock = () => {
               <input
                 type="date"
                 name="date"
-                value={transactionData.date}
-                onChange={handleInputChange}
+                value={editedTransaction.date}
+                onChange={handleChange}
                 className="transaction-input"
               />
             </label>
-
-            {/* Quantity */}
             <label>
               Quantity
               <input
                 type="number"
                 name="quantity"
-                value={transactionData.quantity}
-                onChange={handleInputChange}
+                value={editedTransaction.quantity}
+                onChange={handleChange}
                 className="transaction-input"
-                min="0"
               />
             </label>
 
@@ -178,30 +155,28 @@ const AddTransactionstock = () => {
               <input
                 type="number"
                 name="price"
-                value={transactionData.price}
-                onChange={handleInputChange}
+                value={editedTransaction.price}
+                onChange={handleChange}
                 className="transaction-input"
-                min="0"
               />
             </label>
-          </div>
-
-          <br /><br />
+          </div><br/><br/>
 
           <div className="transaction-row" style={{
-            borderTop: "1px solid #ccc",
-            marginBottom: "10px",
-            paddingBottom: "10px",
+            borderTop: "1px solid #ccc", // Middle border (bottom of this row)
+            marginBottom: "10px",          // Optional spacing between rows
+            paddingBottom: "10px",         // Optional padding for visual clarity
           }}>
             {/* Amount */}
             <label className='amountupdate'>
-              <p1 style={{ marginLeft: "35px" }}>Amount</p1>
+              <p1 style={{ marginLeft: "35px" }}> Amount</p1>
               <input
                 type="number"
                 name="amount"
-                value={transactionData.amount}
+                value={editedTransaction.amount}
                 readOnly
                 className="transaction-input read-only"
+               
               />
             </label>
 
@@ -210,8 +185,8 @@ const AddTransactionstock = () => {
               Net Amount
               <input
                 type="number"
-                name="net_amount"
-                value={transactionData.net_amount}
+                name="netAmount"
+                value={editedTransaction.netAmount}
                 readOnly
                 className="transaction-input read-only"
               />
@@ -222,34 +197,32 @@ const AddTransactionstock = () => {
               Total Charges
               <input
                 type="number"
-                name="total_charges"
-                value={transactionData.total_charges}
+                name="totalCharges"
+                value={editedTransaction.totalCharges}
                 readOnly
                 className="transaction-input read-only"
               />
             </label>
-
-            {/* Notes */}
             <label>
               Notes
               <input
                 type="text"
                 name="notes"
-                value={transactionData.notes}
-                onChange={handleInputChange}
+                value={editedTransaction.notes}
+                onChange={handleChange}
                 className="transaction-input"
               />
             </label>
 
             {/* SIP Toggle */}
             <div className="sip-link">
-              <a href="#" onClick={handleToggleSIP}>
+              <a href="#" onClick={toggleSIPForm}>
                 Add SIP for this Stock
               </a>
             </div>
 
             {/* SIP Form */}
-            {transactionData.showSIP && (
+            {editedTransaction.showSIP && (
               <div className="addsipform-container">
                 <AddSIPForm />
               </div>
@@ -259,14 +232,11 @@ const AddTransactionstock = () => {
 
         {/* Action Buttons */}
         <div className="form-buttons">
-          <button
-            type="button"
-            style={{ marginLeft: "600px", background: "#24b676", color: "white" }}
-            onClick={handleAddTransaction}
-            className="save-button"
-          >
-            Add Transaction
+          <button type="button"   style={{ marginLeft: "600px",background:"#24b676",color:"white" }}onClick={handleSave} className="save-button">
+           Add Transaction
           </button>
+         
+          
         </div>
       </div>
     </div>

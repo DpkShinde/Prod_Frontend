@@ -1,14 +1,12 @@
 .whyfinpersonalreal-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     gap: 20px;
-   
     background-color: #ffff;
-   
     font-family: 'calibri';
     width: 60%;
-    margin-left: 300px;
+    margin: 0 auto;
   }
   
   .whyfinrealmarket-card {
@@ -17,10 +15,10 @@
     border: 2px solid #cecece;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 50%; /* Increased width */
-    height: 90%; /* Increased height */
-    min-height: 500px; /* Ensures a minimum height */
+    width: 400px; /* Increased width */
     margin: 0 auto; /* Centers the card */
+    height: 500px;
+   
 }
 
 .whyfinpersonalreal-card {
@@ -29,10 +27,9 @@
     border: 2px solid #cecece;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 50%; /* Increased width */
-    height: 90%; /* Increased height */
-    min-height: 500px; /* Ensures a minimum height */
+    width: 400px; /* Increased width */
     margin: 0 auto; /* Centers the card */
+    height: 500px;
    
 }
 

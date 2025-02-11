@@ -1,12 +1,10 @@
 .graphcontainerer{
-    width: 150%; 
-    margin-left: -10%; 
+    width: 100%; 
     padding: 6px;
     font-family: "calibri";
-    margin-top: 100px;
     border-radius: 0;
     position: fixed;
-    top: 0;
+    top: 100px;
     z-index: 1000;
     background-color: #fff;
 
@@ -87,7 +85,12 @@ font-weight: bold; /* Make it bold */
 }
 
 
-
+@media (max-width:1150px) {
+  .graphcontainerer 
+{
+  top:130px;
+}
+}
 
 /* For screens 768px and below */
 @media (max-width: 768px) {
@@ -95,6 +98,10 @@ font-weight: bold; /* Make it bold */
   width: 100%; 
   margin-left: 0;
   padding: 10px;
+}
+.graphcontainerer 
+{
+  top:75px;
 }
 
 .graphheader h1 {

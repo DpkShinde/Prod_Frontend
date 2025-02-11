@@ -282,7 +282,7 @@
     padding: 10px;
     text-align: center;
     width: 93%;
-    margin-left: -20px;
+   margin: 25px auto;
 }
 
  
@@ -303,9 +303,16 @@
     font-size: 18px;
     margin-top: 50px;
 }
+.landingpageourservice-list li{
+  width: 80%;
+}
 .landingpageourservice-subheadingg {
   order: 2; /* Second in the order */
   margin-top: 20px; /* Add spacing for clarity */
+}
+.landingpageourservice-container
+{
+  padding: 0;
 }
   .landingpageourservice-heading {
       font-size: 22px;

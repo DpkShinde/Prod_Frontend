@@ -35,9 +35,16 @@
     text-align: right;
   }
   /* Mobile View for 768px (Tablet view) */
+  @media (max-width:1300px)
+  {
+    .niftykeyindicator{
+      width: 640px;
+      margin: 0;
+    }
+  }
 @media (max-width: 768px) {
   .niftykeyindicator {
-      width: 90%; /* Adjust width to take up more space on tablet */
+      width: 88vw; /* Adjust width to take up more space on tablet */
       margin-left: 1px; /* Center the component horizontally */
       margin-right: auto;
       height: auto; /* Allow the height to adjust based on content */
@@ -58,7 +65,7 @@
 /* Mobile View for 480px (Small Mobile screens) */
 @media (max-width: 480px) {
   .niftykeyindicator {
-    width: 90%; /* Adjust width to take up more space on tablet */
+    width: 87vw; /* Adjust width to take up more space on tablet */
     margin-left: 1px; /* Center the component horizontally */
     margin-right: auto;
     height: auto; /* Allow the height to adjust based on content */

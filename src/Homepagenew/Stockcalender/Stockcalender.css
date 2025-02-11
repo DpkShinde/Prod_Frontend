@@ -7,6 +7,7 @@
   }
   .DashboardMainPagetable-table-container {
     overflow-x: auto;
+    width: 100%;
     margin: 20px;
 }
 .pagination-containercalender {
@@ -32,6 +33,8 @@
     background-color: #f2f2f2;
     cursor: pointer;
     font-size: 16px;
+    white-space: nowrap;
+    padding-right: 30px;
 }
 
 .DashboardMainPagetable-tablee td {
@@ -47,14 +50,12 @@
 }
   .earnings-insight-learn-wrapperr{
       font-family: 'calibri';
-      margin-right: 100px;
-  }
+        }
   .DashboardMainPagetable-headercalculator {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
-      margin-left: 50px;
-      margin-top: 280px;
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
     .earnings-insight-learn-tab-button {
       cursor: pointer;
@@ -81,7 +82,7 @@
   .earningquterlyrowalll {
     display: flex;
     width: 890px;
-    margin-left: 40px;
+    align-items: center;
     gap: 210px;
     margin-bottom: 20px;
     padding: 16px;
@@ -89,6 +90,7 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     height: 35px;
+    white-space: nowrap;
     box-shadow: 0px 4px 6px rgba(176, 175, 175, 0.886); /* Subtle shadow for depth */
   }
   
@@ -126,10 +128,11 @@
   .DashboardMainPagetable-headercalculator {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
-    margin-left: 15px;
-    margin-top: 120px;
+    margin-bottom: 30px;
+    margin-left: 0px;
     width: 380px;
+    margin: 30px auto;
+    justify-content: center;
   }
   
   .DashboardMainPagetable-tablee {
@@ -152,9 +155,9 @@
         display: flex;
         border: 1px solid rgb(212, 209, 209);
         height: 40px;
-        margin-left: 200px;
-        width: 140px;
+         width: 140px;
         border-radius: 5px;
+       justify-content: center;
         box-shadow: 0 0 0 2px #efeeee; /* Blue outline when focused */
       }
       
@@ -175,17 +178,16 @@
        
       }
       .DashboardMainPagetable-headercalculator {
-        display: flex
-    ;
-            gap: 2px;
-            margin-bottom: 0;
-            margin-left: -20px;
-            overflow-x: auto;
+        display: flex;
+            gap: 5px;
+            margin-bottom: 30px;
             white-space: nowrap;
-            max-width: 120%;
+            max-width: 100%;
             box-sizing: border-box;
+            justify-content: center;
             scrollbar-width: thick;
-            margin-top: 120px;
+            margin: 30px auto;
+
         }
         .DashboardMainPagetable-headercalculator::-webkit-scrollbar-thumb {
           background-color: #ccc; /* Customize scrollbar thumb color */
@@ -198,7 +200,7 @@
         .DashboardMainPagetable-table-container {
           overflow-x: auto;
           margin: 20px;
-          width: 90%;
+          width: 140%;
           height: 300px;
           margin-left: 10px;
       }

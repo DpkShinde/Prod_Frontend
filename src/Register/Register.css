@@ -88,12 +88,30 @@
 
 .login-options {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     
 }
-
+.login-options p{
+    white-space: nowrap;
+}
+/* .sociall-login{
+  
+}
+.Googleall-btn{
+    width: 100% !important;
+    display: block !important;
+   }
+    */
+ .Googlelink-btn {
+    width: 100% !important;
+    display: block ;
+  }
+ 
 .login-options a {
     color: #007bff;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .sign-in-btn {
@@ -238,5 +256,8 @@
     }
     .toggle-password{
         right: 30px; 
+    }
+    .login-box h2{
+        font-size:larger;
     }
 }

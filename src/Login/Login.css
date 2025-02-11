@@ -81,8 +81,7 @@
 
 .login-options {
   display: flex;
-gap: 310px;
-
+  justify-content: space-between
 
  
 }
@@ -270,8 +269,9 @@ border: 1px solid white;
     border: 1px solid #005582;
 }
 .Googlealll-btn{
-  width: 218px;
-  margin-left: 170px;
+  /* width: 218px; */
+  width: 100%;
+  /* margin-left: 170px; */
   color: #0077b5; /* LinkedIn Blue */
   font-size: 10px;
   font-weight: bold;
@@ -344,7 +344,7 @@ border: 1px solid white;
   }
 
   .Googlealll-btn{
-    margin-left: 64px;
+    /* margin-left: 64px; */
     }
 .forgot-password-link {
   color: #007bff; /* Link color */
@@ -365,7 +365,10 @@ border: 1px solid white;
     height: auto;
   }
 
-  
+  .login-box h2 {
+    font-size:larger;
+    color: black;
+  }
 
   .login-left h1 {
     font-size: 1.8rem;
@@ -428,7 +431,8 @@ border: 1px solid white;
 
 
 .Googlealll-btn{
-margin-left: 56px;
+/* margin-left: 56px; */
+width: 100%;
 }
 .nsm7Bb-HzV7m-LgbsSe {
   
@@ -455,7 +459,7 @@ margin-left: 56px;
 }
 .login-options {
   display: flex;
-gap: 90px;
+  justify-content: space-between;
 }
 
 }

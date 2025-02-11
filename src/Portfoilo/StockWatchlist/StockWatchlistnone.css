@@ -3,10 +3,11 @@
   margin: 20px;
   box-shadow: 0 3px 5px rgb(127, 171, 225);;
   border: 1px solid rgb(127, 171, 225);
- width:900px;
+ width:90%;
+ padding: 10px;
  height: auto;
  border-radius: 5px;
- margin-left: 100px;
+ margin:20px auto;
 }
 .scheme-exchange-cell{
 display: flex;
@@ -204,7 +205,8 @@ box-shadow: 0 3px 5px rgb(127, 171, 225);;
 border: 1px solid rgb(127, 171, 225);
 border-radius: 8px;
 margin-left:100px;
-width:1200px;
+width:90%;
+margin: 50px auto;
 font-family: 'calibri';
 }
 /* Delete Button */
@@ -241,8 +243,8 @@ font-family: 'calibri';
 
   .group-by-sectionwatchlist {
     display: flex; /* Enable flexbox for responsive layout */
-    margin-left: 790px;
-    gap:5px
+    gap: 0;
+    justify-content: space-between;
   }
 
   .watchlist-title {
@@ -288,12 +290,11 @@ font-family: 'calibri';
 
   .content-containerwatchlist {
     margin-bottom: 400px;
-    overflow-x: auto; /* 'auto' is usually more user-friendly than 'scroll' */
     white-space: nowrap; /* Ensures content doesn't wrap, useful for horizontal scrolling */
-    overflow-x: scroll;
     width: -webkit-fill-available;
-    margin: 20px 0;
+    margin: 40px 10px 10px 10px;
     padding: 10px;
+
     margin-bottom: 130px;
   }
   
@@ -317,7 +318,7 @@ font-family: 'calibri';
 
 /* Media query for devices <= 480px */
 @media (max-width: 480px) {
-  .stock-watchlist {
+  . stock-watchlist {
     margin: 5px;
     padding: 10px;
     border-radius: 6px;
@@ -342,6 +343,7 @@ margin-top: 20px;
       overflow-x: scroll/* Adjust container width */;
       width: -webkit-fill-available;
       margin-bottom: 130px;
+      margin: 40px 10px 130px 10px;
        
   }
 
@@ -465,7 +467,7 @@ margin-top: 20px;
   }
   .group-by-sectionwatchlist {
     display: flex; /* Enable flexbox for responsive layout */
-    margin-left: 520px;
+    justify-content: space-between;
   }
 
 

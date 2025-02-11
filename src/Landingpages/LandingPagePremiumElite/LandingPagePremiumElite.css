@@ -704,7 +704,9 @@
     font-weight: 600;
     color: #24b676;
   }
-
+  .landingpageelite-card h3{
+    width: 100%;
+  }
   .landingpagepremiumelite-plan-description {
     font-size: 16px;
     font-weight: 600;

@@ -1,13 +1,10 @@
 /* Main Container */
 .DashboardMainPagetable-container {
-  padding: 20px;
   font-family: 'calibri';
   background: white;
-  width: 1280px;
-  margin-left: 250px;
-  margin-right: 100px;
-  margin-top: -240px;
-
+  max-width: 1280px;
+  margin-left: 300px;
+  width: 100%;
 }
 .pagination-containerrsector {
   display: flex;
@@ -60,7 +57,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
+   
   }
   
   .DashboardMainPagetable-card {
@@ -69,7 +66,7 @@ body{
     border-radius: 8px;
     padding: 16px;
     width: 125px;
-    max-width: 140px;
+    max-width: 150px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-family: 'calibri';
@@ -83,8 +80,14 @@ body{
   
   .DashboardMainPagetable-header-left {
     display: flex;
-   gap: 5px;
+    gap: 5px;
     align-items: center;
+    padding: 0;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+    width: 100%;
   }
   .upgraph{
     display: flex;
@@ -94,13 +97,11 @@ body{
     width: 24px;
     height: 24px;
     display: inline-block;
-    margin-right: 10px;
-    border-radius: 50%;
+      border-radius: 50%;
   }
   
   .sector-icon {
     background-color: #ffcc80; /* Orange for IT */
-    margin-left: 38px;
     width: 10%; /* Adjust size as needed */
     height: 28%; /* Adjust size as needed */
     border-radius: 50%;
@@ -108,7 +109,7 @@ body{
   align-items: center;
   justify-content: center;
   padding: 10px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
  
    /* Centers the icon within the circle */
  
@@ -117,12 +118,11 @@ body{
   
   .sectorenergy-icon{
     background-color:#24b676; /* Yellow for Energy */
-    margin-left: 20px;
-    width: 10%; /* Adjust size as needed */
+     width: 10%; /* Adjust size as needed */
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-    margin-right: 5px;
+   
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -130,12 +130,11 @@ body{
   
   .sectorhealth-icon {
     background-color: #90caf9; /* Blue for Health */
-    margin-left: 20px;
     width: 10%; /* Adjust size as needed */
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-    margin-right: 5px;
+    /* margin-right: 5px; */
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -143,12 +142,11 @@ body{
   
   .sectorpower-icon{
     background-color:rgb(228, 102, 102); /* Red for Power */
-    margin-left: 20px;
-    width: 10%; /* Adjust size as needed */
+     width: 10%; /* Adjust size as needed */
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-    margin-right: 5px;
+    /* margin-right: 5px; */
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -156,12 +154,11 @@ body{
   
   .sectortextile-icon {
     background-color:#ffcc80; /* Purple for Textiles */
-    margin-left: 20px;
     width: 10%; /* Adjust size as needed */
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-    margin-right: 5px;
+    /* margin-right: 5px; */
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -169,12 +166,11 @@ body{
   
   .sectorfinance-icon{
     background-color: #24b676; /* Green for Finance */
-    margin-left: 20px;
+    /* margin-left: 20px; */
     width: 10%; /* Adjust size as needed */
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-  margin-right: 5px;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -186,7 +182,7 @@ body{
     height: 25%; /* Adjust size as needed */
     border-radius: 50%;
     display: flex; /* Centers the icon within the circle */
-    margin-right: 5px;
+    /* margin-right: 5px; */
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -196,11 +192,13 @@ body{
     font-size: 12px;
     font-weight: bold;
     color: #333;
-    margin-left: -5px;
+    /* margin-left: -5px; */
+    margin: 0;
    
   }
   .change-up {
     color:#24b676; /* Green for increase */
+    padding-top: 4px;
 
   }
   
@@ -309,11 +307,10 @@ body{
     background-color: #ddd;
 }
 .DashboardMainPagetable-headerrindexx{
-  display: flex;
+      display: flex;
       gap: 10px;
-      margin-bottom: 20px;
- 
-      margin-top: 20px;
+      margin-bottom: 30px;
+       margin-top: 30px;
 }
   /* Responsive Design */
  
@@ -331,19 +328,21 @@ body{
       background: white;
       width: 100%; /* Full width for mobile screens */
       margin-left: 0; /* No left margin for mobile */
-      margin-top: -100px; /* Adjust alignment for smaller screens */
-      box-sizing: border-box; /* Include padding in width calculation */
+        box-sizing: border-box; /* Include padding in width calculation */
     }
   
     body {
       overflow-x: hidden; /* Prevent horizontal scrolling of the body */
     }
     .DashboardMainPagetable-headerrindexx{
-      display: flex;
+          display: flex;
           gap: 10px;
-          margin-bottom: 20px;
-          margin-left: 10px;
-          margin-top: -100px;
+          margin-bottom: 30px;
+          margin-left: 0px;
+          margin-bottom: 30px;
+          justify-content: center;
+          margin: 30px auto;
+       
     }
   
     .DashboardMainPagetable-header {
@@ -394,15 +393,14 @@ body{
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
-      margin-left: 50px;
+     justify-content: space-around;
     }
   
     .DashboardMainPagetable-table-container {
       overflow-x: auto; /* Enables horizontal scrolling */
       overflow-y: auto; /* Enables vertical scrolling if needed */
       margin: 20px;
-      width: 130%; /* Adjust width to fill the container */
+      /* width: 130%; Adjust width to fill the container */
       margin-left: -10px;
       height: 300px;
       /* Set a fixed height for the table container */
@@ -449,7 +447,7 @@ body{
   
     .DashboardMainPagetable-card.custom-card-size {
       width: 190px;
-      margin-left: 70px;
+      margin-left: 0 !important;
     }
   
     /* Sector Icons */
@@ -469,55 +467,55 @@ body{
   
     .sector-icon {
       background-color: #ffcc80;
-      margin-left: 29px;
-      width: 8%;
-      height: 28%;
+       width: 8%;
+       height: 28%;
+       margin: 0;
     }
   
     .sectorenergy-icon {
       background-color: #24b676;
-      margin-left: 20px;
       width: 8%;
       height: 25%;
+      margin: 0;
     }
   
     .sectorhealth-icon {
       background-color: #90caf9;
-      margin-left: 20px;
       width: 10%;
       height: 25%;
+      margin: 0;
     }
   
     .sectorpower-icon {
       background-color: rgb(228, 102, 102);
-      margin-left: 22px;
       width: 10%;
       height: 25%;
+      margin: 0;
     }
   
     .sectortextile-icon {
       background-color: #ffcc80;
-      margin-left: 22px;
       width: 10%;
       height: 25%;
+      margin: 0;
     }
   
     .sectorfinance-icon {
       background-color: #24b676;
-      margin-left: 20px;
       width: 10%;
       height: 25%;
+      margin: 0;
     }
   
     .sectortele-icon {
       background-color: rgb(85, 85, 236);
-      margin-left: -9px;
       width: 8%;
       height: 25%;
+      margin: 0;
     }
   
     .DashboardMainPagetable-change {
-      margin-top: 15px;
+      margin-top: 12px;
       font-size: 12px;
     }
   
@@ -570,10 +568,10 @@ display: none;
       padding: 10px; /* Reduced padding for smaller screens */
       font-family: 'calibri';
       background: white;
-      width: 130%; /* Full width for mobile screens */
+      width: 100%; /* Full width for mobile screens */
       margin-left: 0px; /* No left margin for mobile */
       /* Adjust alignment for smaller screens */
-
+justify-content: center;
       box-sizing: border-box; /* Include padding in width calculation */
     }
     body{
@@ -599,20 +597,15 @@ display: none;
   }
   
   .DashboardMainPagetable-cards {
-    display: flex
-;
+    display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-    margin-left: 20px;
-    
-  
+    justify-content: space-around;
 }
 .DashboardMainPagetable-table-container {
   overflow-x: auto;
   margin: 20px;
-  width: 50%;
-  margin-left: -10px;
+  width: 95%;
+ 
 }
 .DashboardMainPagetable-tableeee {
   width: 100%;
@@ -631,11 +624,10 @@ display: none;
  
 }
 .DashboardMainPagetable-header-left {
-  display: flex
-;
+  display: flex;
   gap: 1px;
   align-items: center;
-  margin-left: -5px;
+  
 }
 .DashboardMainPagetable-sector {
   font-size: 11px;
@@ -644,7 +636,7 @@ display: none;
 }
 .sector-icon {
   background-color: #ffcc80; /* Orange for IT */
-  margin-left: 49px;
+  /* margin-left: 49px; */
   width: 8%; /* Adjust size as needed */
   height: 28%; /* Adjust size as needed */
   border-radius: 50%;
@@ -660,7 +652,7 @@ padding: 10px;
 
 .sectorenergy-icon{
   background-color:#24b676; /* Yellow for Energy */
-  margin-left: 40px;
+  /* margin-left: 40px; */
   width: 8%; /* Adjust size as needed */
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
@@ -673,7 +665,7 @@ padding: 10px;
 
 .sectorhealth-icon {
   background-color: #90caf9; /* Blue for Health */
-  margin-left: 40px;
+  /* margin-left: 40px; */
   width: 10%; /* Adjust size as needed */
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
@@ -686,7 +678,7 @@ padding: 10px;
 
 .sectorpower-icon{
   background-color:rgb(228, 102, 102); /* Red for Power */
-  margin-left: 42px;
+  /* margin-left: 42px; */
   width: 10%; /* Adjust size as needed */
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
@@ -699,7 +691,7 @@ padding: 10px;
 
 .sectortextile-icon {
   background-color:#ffcc80; /* Purple for Textiles */
-  margin-left: 42px;
+  /* margin-left: 42px; */
   width: 10%; /* Adjust size as needed */
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
@@ -712,7 +704,7 @@ padding: 10px;
 
 .sectorfinance-icon{
   background-color: #24b676; /* Green for Finance */
-  margin-left: 40px;
+  /* margin-left: 40px; */
   width: 10%; /* Adjust size as needed */
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
@@ -729,13 +721,13 @@ padding: 10px;
   height: 25%; /* Adjust size as needed */
   border-radius: 50%;
   display: flex; /* Centers the icon within the circle */
-margin-left: 1px;
+/* margin-left: 1px; */
 align-items: center;
 justify-content: center;
 padding: 10px;
 }
 .DashboardMainPagetable-change{
-  margin-top: 15px;
+  margin-top: 12px;
   font-size: 12px;
 }
 .DashboardMainPagetable-value{
@@ -749,17 +741,11 @@ padding: 10px;
 .DashboardMainPagetable-table-container {
   overflow: auto; /* Enables both x and y axis scroll */
   margin-bottom: 100px;
-  width: 250px;/* Ensures it takes full width of the container */
+  width: 95%;/* Ensures it takes full width of the container */
   height: 400px; /* Set a fixed height for the table container */
   margin-top: 10px;
-  margin-left: -10px;
-}
+ }
 
-.DashboardMainPagetable-table-container {
-  overflow-x: auto;
-  margin: 20px;
-  margin-left:-20px;
-}
 
 .DashboardMainPagetable-table th {
   position: sticky;
@@ -809,17 +795,21 @@ padding: 10px;
       background-color: #f9f9f9; /* Scrollbar track background color */
     }
     .DashboardMainPagetable-headerrindexx{
-      display: flex
-    ;
-            gap: 2px;
+            display: flex;
+            gap: 5px;
             margin-bottom: 30px;
-            margin-top: -200px;
-            margin-left: 15px;
-            overflow-x: auto;
             white-space: nowrap;
-            max-width: 87%;
+            max-width: 100%;
             box-sizing: border-box;
             scrollbar-width: thick;
+            margin-top: 30px;
+            margin-bottom: 30px;
+           justify-content: center;
+          }
+        .DashboardMainPagetable-tab{
+          font-size: small;
+          padding: 5px;
+         
         }
         .DashboardMainPagetable-tab-active{
           padding: 7px 7px;

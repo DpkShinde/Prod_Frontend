@@ -76,7 +76,7 @@ const FooterForhomeAllPage = () => {
             <div className="FooterForAllPage-logo">
               <img src={finanlog} alt="FinanceShastra Logo" className="FooterForAllPage-logo-img" />
             </div>
-            <div className="FooterForAllPage-social-iconss">
+            <div className="FooterForAllPage-social-icons">
               <a href="#" className="FooterForAllPage-social-icon"><FaFacebookF /></a>
               <a href="#" className="FooterForAllPage-social-icon"><FaTwitter /></a>
               <a href="#" className="FooterForAllPage-social-icon"><AiFillInstagram /></a>

@@ -16,7 +16,7 @@
     align-items: flex-start;
     padding: 20px;
    
-    background-color: #ffff;
+    background-color: #f9f9f9;
     min-height: 100vh;
   }
   
@@ -35,51 +35,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
- /* Responsive Styles for Tablets (max-width: 768px) */
-@media screen and (max-width: 768px) {
-  .marketthead {
-      margin-left: 20px;
-      font-size: 1.6rem;
-      text-align: center;
-      margin-top: 80px;
-  }
-
-  .markett {
-      flex-direction: column; /* Stack sidebar and content vertically */
-      padding: 15px;
-  }
-
-  .markett .marketsidebar {
-      width: 100%;
-      margin-bottom: 15px;
-  }
-
-  .markett .marketable {
-      padding: 15px;
-  }
-}
-
-/* Responsive Styles for Mobile (max-width: 480px) */
-@media screen and (max-width: 480px) {
-  .marketthead {
-      margin-left: 10px;
-      font-size: 1.4rem;
-      text-align: center;
-      margin-top: 60px;
-  }
-
-  .markett {
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .markett {
       flex-direction: column;
+      align-items: center;
       padding: 10px;
-  }
-
-  .markett .marketsidebar {
+    }
+  
+    .marketsidebar {
       width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+    }
+  
+    .marketable {
+      width: 100%;
+      padding: 15px;
+    }
   }
-
-  .markett .marketable {
-      padding: 10px;
-      box-shadow: none; /* Remove shadow for a cleaner mobile look */
-  }
-}

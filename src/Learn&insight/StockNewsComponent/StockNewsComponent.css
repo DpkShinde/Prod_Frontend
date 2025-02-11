@@ -52,7 +52,7 @@ background-color:  #f0f0f0;
 .newsContent {
   display: flex;
   flex-direction: column;
-  
+  width: 70%;
 }
 
 .newsTitle {
@@ -76,6 +76,14 @@ background-color:  #f0f0f0;
 .stockNewsContainer {
 margin-bottom: 100px;
 }
+
+
+
+  h2, h3 {
+      font-size: 20px;
+      margin-left: 20px;
+      white-space: normal !important;
+  }
 
   .newsTitle {
     font-size: 16px; /* Adjust font size */

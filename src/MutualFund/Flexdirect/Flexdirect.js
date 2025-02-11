@@ -229,7 +229,7 @@ const Flexdirect = () => {
       <div className="funds-table-container">
         <div className="funds-header">
           <h2 className="funds-table-title">Best Flex Cap Fund</h2>
-          <div className="topfundbutton-container">
+          <div className="button-container">
             <button
               className="fund-button regular"
               style={{ backgroundColor: "white", color: "black" }}

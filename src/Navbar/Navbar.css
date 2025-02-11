@@ -589,7 +589,7 @@ a span {
 
   .footer-nav {
     display: flex;
-    height: 60px;
+    height: 65px;
    
    
   }
@@ -616,17 +616,23 @@ a span {
 
   /* Stock dropdown menu */
   .stockmenu {
-    
-    width: 530%;
-    height: 150vh; /* Full height on mobile */
-    gap: 10px;
-    transform: translateY(-50%);
+    width: 470px;
+    height: 350px;
+    position: fixed;
+    left: 280px;
+    top: 100px;
   }
   .mutualstockmenu{
-    width: 600%;
-    height: 110vh; /* Full height on mobile */
-    gap: 10px;
-    transform: translateY(-50%);
+    /* width: 600%; */
+    /* height: 110vh; Full height on mobile */
+    /* gap: 10px; */
+    /* transform: translateY(-50%); */
+
+    position: fixed;
+    right: 0px;
+    top: 150px;
+    height: 350px;
+    width: 300px;
   }
   /* Styling for the divider line */
   .stockmenu::before {
@@ -783,7 +789,9 @@ a span {
     cursor: pointer;
 }
 
-  
+ul.footer-nav{
+  margin-bottom: 0 !important;
+}
  
   
 }
@@ -822,21 +830,29 @@ a span {
     box-shadow: 0 2px 4px red; /* Subtle shadow for very small screens */
   }
   /* Stock dropdown menu adjustments */
-  .stockmenu {
-    width: 800%;
-    height: 200vh;
-    left: 0;
-    transform: translateY(-30%);
-    gap: 5px;
-    left: -75px;
+  .stockmenu{
+    width: 360px;
+    height: 500px;
+    position: fixed;
+    left: 190px;
+    top: 160px;
+   padding: 0;
+    /* top: 80px; */
+  
+   
 }
   .mutualstockmenu {
-    width: 600%;
+    /* width: 600%;
     height: 110vh;
     gap: 10px;
-    transform: translateY(-50%);
-    /* margin-right: 100px; */
-    left: -130px;
+    transform: translateY(-50%); */
+                            /* margin-right: 100px; */
+    /* left: -130px; */
+    position: fixed;
+    left: 220px;
+    top: 100px;
+    height: 350px;
+    width: 300px;
 }
   /* Dropdown menu adjustments */
   .dropdown-menu li {
@@ -856,9 +872,10 @@ a span {
   /* Adjust footer nav layout */
   .footer-nav {
     font-size: 12px;
-    margin-left: 0px;
-    height: 60px;
-}
+    height: 65px;
+    
+ 
+  }
   .footer-dropdown {
     width: 95%; /* Adjust width for smaller screens */
     height: auto; /* Dynamic height based on content */
@@ -987,9 +1004,31 @@ a span {
     margin-top: 10px;
     cursor: pointer;
 }
-
+ul.footer-nav{
+  margin-bottom: 0 !important;
+}
   
  
   
   
+}
+@media (max-width: 420px)
+{
+  .mutualstockmenu {
+    position: fixed;
+        left: 195px;
+        top: 170px;
+        height: 420px;
+        bottom: 0;
+        width: 320px;
+    
+}
+.stockmenu{
+  width: 360px;
+  height: 500px;
+  position: fixed;
+  left: 190px;
+  top: 160px;
+   padding: 0;
+}
 }

@@ -8,8 +8,7 @@
    
     font-family: 'calibri';
     width: 60%;
-    margin-left: 300px;
-    margin-top: 30px;
+  margin:30px auto;
 }
 @media (max-width: 768px) {
     .whyfinpersonalreal-containerr {

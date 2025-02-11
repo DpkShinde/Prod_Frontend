@@ -7,23 +7,20 @@
   }
   
   .funds-header {
-    display: flex
-;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    margin-top: -40px;
-}
+    margin-bottom: 15px;
+  }
   
   .funds-table-title {
     font-size: 24px;
     margin: 0;
     color: #333;
-   margin-top: 60px;
-   margin-bottom: -20px;
+    margin-top: 20px;
   }
   
-  .topfundbutton-container {
+  .button-container {
     display: flex;
     gap: 10px;
    margin-top: 80px;
@@ -75,22 +72,14 @@
     padding: 10px;
     font-weight: bold;
     color: white;
-    font-size: 14px;
-}
+   
+  }
   
   .funds-table-row td {
     padding: 10px;
-    font-size: 14px;
-}
-.sort-icons {
-  display: inline-flex
-;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 5px;
-  font-size: 10px;
-  margin-top: 0px;
-}
+    
+  }
+  
   .funds-table-row:nth-child(even) {
     background-color: #f9f9f9;
   }
@@ -111,7 +100,12 @@
     text-decoration: none;
     color: #24b676;
   }
-  
+  .sort-icons {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
+  }
   
   .sort-icons .active {
     color: white;
@@ -123,52 +117,15 @@
     color: gray;
   }
   
-/* Responsive styles */
+/* Mobile and Tablet Styles */
+
+/* For screens less than 768px (tablets and smaller) */
 @media screen and (max-width: 768px) {
   .funds-table-container {
       width: 95%;
-      margin-top: 50px;
-  }
-
-  .funds-header {
-      flex-direction: column;
-      align-items: flex-start;
-      
-  }
-
-  .topfundbutton-container {
-      flex-direction: row;
-      align-items: flex-start;
-      margin-top: 20px;
-      gap: 5px;
-  }
-
-  .fund-button {
-      width: 100%;
-      text-align: center;
-  }
-
-  .funds-table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
-  }
-
-  .funds-table-header th,
-  .funds-table-row td {
-      font-size: 12px;
-      padding: 8px;
-  }
-  .funds-table-title {
-    font-size: 20px;
-    margin-top: 50px;
-}
-}
-
-@media screen and (max-width: 480px) {
-  .funds-table-container {
-      width: 100%;
-      margin-top: 30px;
+      margin-bottom: 50px;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   }
 
   .funds-header {
@@ -178,54 +135,71 @@
   }
 
   .funds-table-title {
-    font-size: 20px;
-    margin-top: 50px;
-}
+      font-size: 20px;
+  }
 
-  .topfundbutton-container {
-    flex-direction: row;
-    width: 80%;
-    margin-right: 0;
-    align-items: stretch;
-}
+  .button-container {
+      flex-direction: row;
+      margin-top: 20px;
+      margin-right: 0;
+  }
+
   .fund-button {
+      padding: 8px 16px;
+      font-size: 12px;
+  }
+
+  .funds-table-description {
+      font-size: 12px;
+  }
+
+  .funds-table th, .funds-table td {
       font-size: 12px;
       padding: 8px;
-      width: 100%;
   }
 
-  .funds-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+  .funds-table-header th {
+      font-size: 14px;
+  }
 }
 
-.funds-table::-webkit-scrollbar {
-    height: 8px; /* Set the height of the scrollbar */
-}
+/* For screens less than 480px (small mobile devices) */
+@media screen and (max-width: 480px) {
+  .funds-table-container {
+      width: 100%;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  }
 
-.funds-table::-webkit-scrollbar-thumb {
-    background-color: #cecece; /* Scrollbar color */
-    border-radius: 4px; /* Rounded edges */
-}
+  .funds-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
 
-.funds-table::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Track color */
-}
+  .funds-table-title {
+      font-size: 18px;
+  }
 
+  .button-container {
+      flex-direction: row;
+      margin-top: 40px;
+  }
 
-  .funds-table-header th,
-  .funds-table-row td {
-      font-size: 12px;
+  .fund-button {
+      padding: 6px 12px;
+      font-size: 10px;
+  }
+
+  .funds-table-description {
+      font-size: 10px;
+  }
+
+  .funds-table th, .funds-table td {
+      font-size: 10px;
       padding: 6px;
   }
-  .funds-table-description {
-    justify-content: space-between;
-    align-items: left;
-    flex-wrap: wrap;
-    font-size: 12px;
-    color: black;
-    margin: 15px 0;
-}
+
+  .funds-table-header th {
+      font-size: 12px;
+  }
 }

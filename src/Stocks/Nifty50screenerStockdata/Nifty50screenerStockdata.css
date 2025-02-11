@@ -27,8 +27,8 @@
   .screenertablenifty{
     width: 82%;
     border-collapse: collapse;
-    margin-left: 160px;
-    font-family: 'calibri';
+    margin: 0 auto;
+     font-family: 'calibri';
     
    
   }
@@ -69,6 +69,7 @@
   .screenertablenifty th:not(:first-child):not(:last-child) {
     border-left: none;  /* No left border for middle columns */
     border-right: none; /* No right border for middle columns */
+    white-space: nowrap;
   }
   
   
@@ -103,7 +104,7 @@
 
   .screenertablenifty {
       width: 100%;
-      margin-left: 20px;
+     
   }
 
   .screenertablenifty th,
@@ -151,7 +152,7 @@
 
   .screenertablenifty {
       width: 100%;
-      margin-left: 20px;
+     
   }
 
   .screenertablenifty th,

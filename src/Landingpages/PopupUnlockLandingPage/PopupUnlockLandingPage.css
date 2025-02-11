@@ -23,12 +23,13 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     font-family: 'calibri';
+  
   }
   
   /* Close button */
   .popupunlocklandingpage-close {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 15px;
     border: none;
     background: none;
@@ -149,9 +150,44 @@
   .popupunlocklandingpagelogin {
     background: #24b676;
     font-family: 'calibri';
-    margin-left: 200px;
+    /* margin-left: 200px; */
   }
   .popupunlocklandingpageregister:hover,
   .popupunlocklandingpagelogin:hover {
     background-color: #1d9d5b;
+  }
+
+
+  @media (max-width:502px){
+    .popupunlocklandingpage{
+       width: 85% !important;
+       top:-5px !important;
+    }
+    .popupunlocklandingpage-title{
+      font-size: 19px;
+    }
+    .popupunlocklandingpage-subtitle{
+      font-size: 15px;
+    }
+    .popupunlocklandingpage-image{
+      margin: 8px 0;
+    }
+    .popupunlocklandingpage-footer
+    {
+      margin-left: 0 !important;
+    }
+    .popupunlocklandingpage-checkbox,.popupunlocklandingpagelogin {
+      margin-left: 0;
+    }
+    .popupunlocklandingpage-buttons{
+      justify-content: space-between;
+    }
+
+  }
+
+  @media (max-width:350px){
+    .popupunlocklandingpage{
+       width: 90% !important;
+       top:60px !important;
+    }
   }

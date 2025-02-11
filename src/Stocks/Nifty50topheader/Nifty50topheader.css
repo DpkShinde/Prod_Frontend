@@ -1,20 +1,16 @@
 
-    .title-containernifty{
-        margin-left: 50px;
-    }
+  
     .graphnavbarrnifty50 {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
-        
-       
-        margin-left: 330px;
+       justify-content: center;
         cursor: pointer;
         transition: transform 0.3s ease, color 0.3s ease;
       }
       .graphheadernifty {
         display: flex;
-        gap: 600px;
+        justify-content: space-around;
         align-items: center;
         padding-bottom: 5px;
         margin-bottom: 5px;
@@ -24,7 +20,6 @@
         font-size: 22px;
         font-weight: bold;
         margin: 0;
-        margin-left: 290px;
         width: 100px;
     }
       .graphnavbarrnifty50:hover {
@@ -73,8 +68,7 @@
         font-size: 12px;
         color: #333;
         margin-top: 2px;
-        margin-left: 210px;
-      }
+       }
       .graphpricenifty50 {
         font-size: 24px;
         font-weight: bold;
@@ -105,10 +99,9 @@
         }
         
         .graphnavbarrnifty50 {
-        
+        justify-content: flex-start;
         margin-left: 30px;
-        margin-right: 20px;
-        
+       
         }
         
         .graphnavbarrnifty50 span, .graphnavbarrnifty50 a {
@@ -167,8 +160,9 @@
   }
 
   .graphnavbarrnifty50 {
-    margin-left: 30px;
-    margin-right: 10px;
+    justify-content: flex-start;
+    margin-left: 10px;
+  
   }
 
   .graphnavbarrnifty50 span, .graphnavbarrnifty50 a {

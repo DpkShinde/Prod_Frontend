@@ -104,6 +104,7 @@ margin-left: 30px;
   h2, h3 {
     font-size: 20px; /* Slightly reduce font size */
     margin-left: 20px; /* Adjust margin for better alignment */
+    white-space: nowrap;
   }
 
   /* Adjust Column Width in Financial and Market Tables */
