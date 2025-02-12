@@ -3,6 +3,7 @@ import "./Portfoliomanager.css";
 import { Link } from 'react-router-dom';
 import Navbar from "../../Navbar/Navbar";
 import PortfolioManagerDashboard from "../Portfoliodashboard/Portfoliodashboard";
+import { API_BASE_URL } from "../../config";
 
 function Portfolio() {
   return (
