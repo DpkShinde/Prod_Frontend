@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import Navbar from "../../Navbar/Navbar";
 import FooterForAllPage from "../../FooterForAllPage/FooterForAllPage";
-import useMutualFunds from "../Hooks/useMutualFunds";
+import useTopRatedFunds from "../Hooks/useTopRatedFunds";
 
 const headers = [
   { key: "FundName", label: "Funds" },
@@ -21,14 +21,14 @@ const headers = [
 
 const TopRatedFundsdirect = () => {
   const navigate = useNavigate();
-  const { allFunds, loading, error } = useMutualFunds(); // Use the custom hook
+  const { topRatedFunds, loading, error } = useTopRatedFunds(); // Use the custom hook
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   // console.log(allFunds);
 
   const sortedData = () => {
-    if (!sortConfig.key) return allFunds;
+    if (!sortConfig.key) return topRatedFunds;
 
-    const sorted = [...allFunds];
+    const sorted = [...topRatedFunds];
     sorted.sort((a, b) => {
       const aValue = parseFloat(a[sortConfig.key]) || a[sortConfig.key];
       const bValue = parseFloat(b[sortConfig.key]) || b[sortConfig.key];
