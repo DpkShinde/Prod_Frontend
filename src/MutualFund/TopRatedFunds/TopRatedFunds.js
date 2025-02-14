@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import "./TopRatedFunds.css";
 import Navbar from "../../Navbar/Navbar";
 import FooterForAllPage from "../../FooterForAllPage/FooterForAllPage";
+import useMutualFunds from "../Hooks/useMutualFunds"; // Import custom hook
 
 const headers = [
   { key: "FundName", label: "Funds" },
@@ -21,26 +22,8 @@ const headers = [
 
 const TopRatedFunds = () => {
   const navigate = useNavigate();
+  const { allFunds, loading, error } = useMutualFunds(); // Use the custom hook
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  const [allFunds, setAllFunds] = useState([]);
-
-  // Fetch all funds data from backend API
-  const getAllFunds = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/mutualFunds/allFunds`
-      );
-      const data = await response.json();
-      console.log(data?.data);
-      setAllFunds(data?.data || []);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllFunds();
-  }, []);
 
   // Sort function
   const sortedData = () => {
@@ -114,56 +97,62 @@ const TopRatedFunds = () => {
           identify options that suit your financial objectives.
         </p>
 
-        <div className="table-wrapper">
-          <table className="funds-table">
-            <thead>
-              <tr className="funds-table-header">
-                {headers.map(({ key, label }) => (
-                  <th key={key} onClick={() => handleSort(key)}>
-                    {label} {renderSortIcons(key)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sortedFunds.map((fund) => (
-                <tr key={fund.FundID} className="funds-table-row">
-                  <td>
-                    {fund.url ? (
-                      <a
-                        href={fund.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="fund-name-link"
-                      >
-                        {fund.FundName}
-                      </a>
-                    ) : (
-                      <Link to="/mutualfundgrowth" className="fund-name-link">
-                        {fund.FundName}
-                      </Link>
-                    )}
-                  </td>
-                  <td>{fund.Rating}</td>
-                  <td>{fund.Riskometer}</td>
-                  <td>{fund.NAV}</td>
-                  <td>{fund.AUM}</td>
-                  <td>{fund.SIPAmount}</td>
-                  <td>{fund.ExpenseRatio}</td>
-                  <td>
-                    {fund.OneYearReturn ? `${fund.OneYearReturn}%` : "N/A"}
-                  </td>
-                  <td>
-                    {fund.ThreeYearReturn ? `${fund.ThreeYearReturn}%` : "N/A"}
-                  </td>
-                  <td>
-                    {fund.FiveYearReturn ? `${fund.FiveYearReturn}%` : "N/A"}
-                  </td>
+        {loading ? (
+          <p className="loading-text">Loading funds...</p>
+        ) : error ? (
+          <p className="error-text">Error: {error}</p>
+        ) : (
+          <div className="table-wrapper">
+            <table className="funds-table">
+              <thead>
+                <tr className="funds-table-header">
+                  {headers.map(({ key, label }) => (
+                    <th key={key} onClick={() => handleSort(key)}>
+                      {label} {renderSortIcons(key)}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {sortedFunds.map((fund) => (
+                  <tr key={fund.FundID} className="funds-table-row">
+                    <td>
+                      {fund.url ? (
+                        <a
+                          href={fund.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="fund-name-link"
+                        >
+                          {fund.FundName}
+                        </a>
+                      ) : (
+                        <Link to="/mutualfundgrowth" className="fund-name-link">
+                          {fund.FundName}
+                        </Link>
+                      )}
+                    </td>
+                    <td>{fund.Rating}</td>
+                    <td>{fund.Riskometer}</td>
+                    <td>{fund.NAV}</td>
+                    <td>{fund.AUM}</td>
+                    <td>{fund.SIPAmount}</td>
+                    <td>{fund.ExpenseRatio}</td>
+                    <td>
+                      {fund.OneYearReturn ? `${fund.OneYearReturn}%` : "N/A"}
+                    </td>
+                    <td>
+                      {fund.ThreeYearReturn ? `${fund.ThreeYearReturn}%` : "N/A"}
+                    </td>
+                    <td>
+                      {fund.FiveYearReturn ? `${fund.FiveYearReturn}%` : "N/A"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <div className="foooterpagesatt">
         <FooterForAllPage />
