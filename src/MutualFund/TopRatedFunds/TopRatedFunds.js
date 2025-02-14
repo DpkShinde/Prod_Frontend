@@ -134,15 +134,17 @@ const TopRatedFunds = () => {
                     </td>
                     <td>{fund.Rating}</td>
                     <td>{fund.Riskometer}</td>
-                    <td>{fund.NAV}</td>
-                    <td>{fund.AUM}</td>
-                    <td>{fund.SIPAmount}</td>
-                    <td>{fund.ExpenseRatio}</td>
+                    <td>{fund.NAV_Regular ? `₹${fund.NAV_Regular}` : "N/A"}</td>
+                    <td>{`₹${fund.AUM} Cr`}</td>
+                    <td>{`₹${fund.SIPAmount}`}</td>
+                    <td>{`${fund.ExpenseRatio}%`}</td>
                     <td>
                       {fund.OneYearReturn ? `${fund.OneYearReturn}%` : "N/A"}
                     </td>
                     <td>
-                      {fund.ThreeYearReturn ? `${fund.ThreeYearReturn}%` : "N/A"}
+                      {fund.ThreeYearReturn
+                        ? `${fund.ThreeYearReturn}%`
+                        : "N/A"}
                     </td>
                     <td>
                       {fund.FiveYearReturn ? `${fund.FiveYearReturn}%` : "N/A"}

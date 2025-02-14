@@ -132,10 +132,10 @@ const TopRatedFundsdirect = () => {
                     </td>
                     <td>{fund.Rating}</td>
                     <td>{fund.Riskometer}</td>
-                    <td>{fund.NAV_Direct ? `${fund.NAV_Direct}` : "N/A"}</td>
-                    <td>{fund.AUM}</td>
-                    <td>{fund.SIPAmount}</td>
-                    <td>{fund.ExpenseRatio}</td>
+                    <td>{fund.NAV_Direct ? `₹${fund.NAV_Direct}` : "N/A"}</td>
+                    <td>{`₹${fund.AUM} Cr`}</td>
+                    <td>{`₹${fund.SIPAmount}`}</td>
+                    <td>{`${fund.ExpenseRatio}%`}</td>
                     <td>
                       {fund.OneYearReturn ? `${fund.OneYearReturn}%` : "N/A"}
                     </td>
