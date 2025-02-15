@@ -161,7 +161,7 @@
 .screener-table-wrapper {
   overflow-x: auto;
   font-size: 12px;
-  width: 95vw;
-
+  width: 110%;
+  margin-left: -20px;
 }
 }

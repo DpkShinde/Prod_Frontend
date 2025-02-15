@@ -27,7 +27,6 @@
 .earnings-insight-learn-header-row {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     
 }
 
@@ -49,7 +48,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
-   }
+    margin-top: 10px;
+}
 
 
 
@@ -267,7 +267,6 @@
         border-bottom: 2px solid #24b676;
         box-shadow: 4px 4px 5px rgba(36, 182, 118, 0.5);
         font-size: 15px;
-        white-space: nowrap;
         z-index: 2; /* Ensure it stays above table content */
       
     }
@@ -296,8 +295,8 @@
 
     .earnings-insight-learn-header-row {
         display: flex;
-        /* gap: 60px; Adjust gap between header elements */
-  
+        gap: 60px; /* Adjust gap between header elements */
+       
     }
 
     .earnings-insight-learn-dropdown {
@@ -369,7 +368,7 @@
     }
 
     .earnings-insight-learn-table {
-        width:100%; /* Ensure table occupies full width */
+        width:93%; /* Ensure table occupies full width */
         overflow-x: auto; /* Enable horizontal scrolling */
         display: block; /* Make table behave as a block element */
         margin-bottom: 100px;
@@ -392,7 +391,6 @@
         border-bottom: 2px solid #24b676;
         box-shadow: 4px 4px 5px rgba(36, 182, 118, 0.5);
         font-size: 15px;
-        white-space: nowrap;
         z-index: 2; /* Ensure it stays above table content */
       
     }
@@ -422,8 +420,8 @@
 
     .earnings-insight-learn-header-row {
         display: flex;
-        /* gap: 43px; Adjust gap between header elements */
-       justify-content: space-around;
+        gap: 43px; /* Adjust gap between header elements */
+       
     }
 
     .earnings-insight-learn-dropdown {

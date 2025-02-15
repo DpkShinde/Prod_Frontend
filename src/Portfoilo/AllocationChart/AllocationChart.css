@@ -69,12 +69,11 @@
   .portfolio-allocation-container {
     flex-direction: column; /* Stack the elements vertically for tablet view */
     align-items: center; /* Center-align the content */
-    width: 90%; /* Ensure the container doesn't exceed the screen width */
+    padding: 15px; /* Adjust padding for smaller screens */
+    width: 100%; /* Ensure the container doesn't exceed the screen width */
     margin: 0 auto; /* Center the container horizontally */
     display: flex; /* Use flexbox to center content */
     justify-content: center; /* Center content horizontally */
-    align-items: center;
-    gap:20px
   }
 
   .portfolio-chart-section {
@@ -88,12 +87,10 @@
   }
 
   .portfolio-chart {
-    width: 40vw; /* Take full width */
+    width: 100%; /* Take full width */
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Horizontally center the donut */
     align-items: center; /* Vertically center the donut */
-    margin:0 auto;
-    
   }
 
   .portfolio-donut {
@@ -125,7 +122,7 @@
 @media (max-width: 480px) {
   .portfolio-allocation-container {
     padding: 10px; /* Further reduce padding for small screens */
-    width: 114% !important; /* Ensure container width is 100% */
+    width: 100%; /* Ensure container width is 100% */
     margin: 0 auto; /* Center the container horizontally */
     display: flex; /* Use flexbox to center content */
     justify-content: center; /* Center content horizontally */
@@ -143,7 +140,7 @@
   }
 
   .portfolio-chart {
-    width: 70%; /* Take full width */
+    width: 100%; /* Take full width */
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Horizontally center the donut */
     align-items: center; /* Vertically center the donut */

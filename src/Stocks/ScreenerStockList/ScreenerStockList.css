@@ -144,8 +144,6 @@
 .screener-table th:not(:first-child):not(:last-child) {
   border-left: none;  /* No left border for middle columns */
   border-right: none; /* No right border for middle columns */
-  white-space: nowrap;
-  text-align: center;
 }
 
 
@@ -859,7 +857,6 @@ cursor: pointer;
   width: 200px;
   z-index: 1000;
   border: 1px solid #ccc;
-  right: 0;
 }
 
 .dropdown-market-cap-label {
@@ -1134,7 +1131,6 @@ cursor: pointer;
 
   .screener-table th:first-child, .screener-table th:last-child {
     padding: 10px;
-    white-space: nowrap;
   }
 
   .screener-row:nth-child(even) {
@@ -1153,7 +1149,6 @@ cursor: pointer;
   .company-icon {
     width: 20px;
     height: 20px;
-    margin-left: 10px;
   }
 
   .tab-container {
@@ -1244,7 +1239,7 @@ width: 60%;
          max-width: 50%;
          top: 180px;
          position: fixed;
-        /* left: 230px; */
+        left: 230px;
  
      }
      .dropdown-change-options{
@@ -1502,8 +1497,6 @@ width: 60%;
 
   .screener-table th:first-child, .screener-table th:last-child {
     padding: 8px;
-    padding-right: 20px !important;
-    white-space: nowrap;
   }
 
   .screener-row:nth-child(even) {
@@ -1522,7 +1515,6 @@ width: 60%;
   .company-icon {
     width: 18px;
     height: 18px;
-    margin-left: 10px;
   }
 
   .tab-container {

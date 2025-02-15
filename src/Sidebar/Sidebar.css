@@ -53,14 +53,6 @@
     /* Full-width main content */
     .main-content {
         margin-left: 0;
-        padding: 20px 10px;
-    }
-}
-
-@media (max-width:480px)
-{
-    .main-content {
-        margin-left: 0;
-        padding: 0;
+        padding: 20px;
     }
 }

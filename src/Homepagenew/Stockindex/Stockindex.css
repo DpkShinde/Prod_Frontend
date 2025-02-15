@@ -32,11 +32,11 @@ margin-bottom: 30px;
   margin-left: 300px;
 }
 .DashboardMainPagetable-headerrindex{
-     display: flex;
+  display: flex;
       gap: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       margin-left: 300px;
-      margin-top: 30px;
+      margin-top: 20px;
 }
 
 .DashboardMainPagetable-tableee {
@@ -50,14 +50,12 @@ margin-bottom: 30px;
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
-  white-space: nowrap;
 }
 
 .DashboardMainPagetable-tableee th {
   background-color: #f2f2f2;
   cursor: pointer;
   font-size: 16px;
-  white-space: nowrap;
 }
 .DashboardMainPagetable-tableee td {
  
@@ -75,20 +73,6 @@ margin-bottom: 30px;
   .DashboardMainPagetable-headerr{
     margin-left: 300px;
     margin-top: 40px;
-  }
-
-  .DashboardMainPagetable-header-left{
-    width: 100%;
-    /* border:2px solid green; */
-    padding: 0;
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-    flex-direction: column;
-  }
-  .DashboardMainPagetable-sector{
-    /* border:2px solid red; */
-    margin:0;
   }
   
   .DashboardMainPagetable-card {
@@ -126,14 +110,12 @@ margin-bottom: 30px;
     top: 0;
     background-color: #fff; /* Optional, to make sure the sticky header is visible */
     z-index: 1; /* Ensure it's above other content */
-    padding-right: 30px;
   }
   
   .DashboardMainPagetable-tableee th, 
   .DashboardMainPagetable-tableee td {
     padding: 8px;
     border: 1px solid #ddd;
-    padding-left: 30px ;
   }
   
   .DashboardMainPagetable-tableee td {
@@ -165,11 +147,12 @@ margin-bottom: 30px;
     background-color: #ddd;
   }
   .DashboardMainPagetable-cardss {
-    display: flex;
+    display: flex
+;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 0;
-    justify-content: space-around;
+    margin-top: 20px;
+    margin-left: 50px;
 }
 .pagination-containerrindex {
   display: flex;
@@ -183,27 +166,21 @@ margin-bottom: 30px;
   display: flex;
       gap: 10px;
       margin-bottom: 20px;
-     margin-top: 30px;
-     margin-bottom: 30px;
-     margin-left: 0px;
-     margin: 30px auto;
-     justify-content: center;
-}
-.DashboardMainPagetable-containerr{
-  padding:10px;
+      margin-left: 30px;
+      margin-top: 20px;
 }
 }
 @media (max-width: 480px) {
   .DashboardMainPagetable-headerrindex{
-  display: flex;
-        gap: 5px;
+  display: flex
+;
+        gap: 2px;
         margin-bottom: 0;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      justify-content: center;
-     margin-left: 0;
-       white-space: nowrap;
-        max-width: 100%;
+      margin-top: 20px;
+        margin-left: 15px;
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width: 87%;
         box-sizing: border-box;
         scrollbar-width: thick;
     }
@@ -211,18 +188,17 @@ margin-bottom: 30px;
       background-color: #ccc; /* Customize scrollbar thumb color */
       border-radius: 4px; /* Rounded corners for scrollbar thumb */
     }
-    .DashboardMainPagetable-tableee th{
-      padding-right: 30px;
-    }
     
     .DashboardMainPagetable-headerrindex::-webkit-scrollbar-track {
       background-color: #f9f9f9; /* Scrollbar track background color */
     }
     .DashboardMainPagetable-cardss {
-      display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    
+      display: flex
+;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      margin-left: 30px;
   }
   .pagination-containerrindex {
     display: flex;

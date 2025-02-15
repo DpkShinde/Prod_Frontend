@@ -37,8 +37,6 @@ cursor: pointer; /* Pointer cursor on hover */
 
 .DashboardMainPagetable-tableeee th{
   font-size: 16px;
-  white-space: nowrap;
- 
 }
 .DashboardMainPagetable-headerrr {
   display: flex;
@@ -107,14 +105,16 @@ align-items: left;
 .DashboardMainPagetable-headeranalyst{
 display: flex;
 gap: 10px;
-margin-top: 30px;
-margin-bottom: 30px;
+margin-bottom: 20px;
+margin-left: 10px;
+margin-top: 290px;
 }
 
 @media (max-width: 768px) {
 
   .tabsnifty50-containerdash {
     display: flex; /* Flexbox layout to align buttons in a row */
+    overflow-x: auto; /* Enables horizontal scrolling */
     white-space: nowrap; /* Prevents buttons from wrapping to next line */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     margin-bottom: 10px; /* Adds spacing at the bottom */
@@ -128,9 +128,9 @@ margin-bottom: 30px;
 .DashboardMainPagetable-headeranalyst{
   display: flex;
   gap: 10px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-top: 150px;
   }
   .DashboardMainPagetable-table-containerrrrr {
     overflow-x: auto;
@@ -158,16 +158,19 @@ margin-bottom: 30px;
   padding: 8px 12px; /* Adjust button padding for mobile */
 }
 .DashboardMainPagetable-headeranalyst{
-       display: flex;
-        gap: 5px;
+ 
+    display: flex
+;
+        gap: 2px;
         margin-bottom: 0;
+        margin-left: -10px;
+        overflow-x: auto;
         white-space: nowrap;
-        max-width: 100%;
+        max-width: 120%;
         box-sizing: border-box;
         scrollbar-width: thick;
-        margin-bottom: 30px;
-        margin-top: 30px;
-        justify-content: center;
+        margin-top: 130px;
+        margin-bottom: 10px;
     }
     .DashboardMainPagetable-headeranalyst::-webkit-scrollbar-thumb {
       background-color: #ccc; /* Customize scrollbar thumb color */
@@ -183,9 +186,6 @@ margin-bottom: 30px;
       width: 114%;
       margin-left: -1px;
       margin-top: -10px;
-  }
-  .DashboardMainPagetable-tableeee th{
-    padding-right: 30px !important;
   }
   .pagination-containeranalyst{
     display: flex;
@@ -203,5 +203,6 @@ margin-bottom: 30px;
     margin-bottom: 10px; /* Adds spacing at the bottom */
     padding: 0 10px; /* Optional: Add padding on left and right to create space */
     width: 100%; /* Ensure the container takes up full width */
+    margin-left: -20px;
     }
 }

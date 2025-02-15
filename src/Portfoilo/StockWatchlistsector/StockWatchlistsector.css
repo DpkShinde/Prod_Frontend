@@ -13,9 +13,9 @@ height: 170px;
   }
 
   .newwmutual{
-    font-family: calibri;
     margin-left: 100px;
     margin-top: 120px;
+    font-family: 'calibri';
     
   }
   .watchlist-title {
@@ -289,7 +289,7 @@ height: 170px;
     display: flex;
     align-items: center;
     margin: 10px 0;
-   justify-content: space-between;
+    gap: 710px;
   }
   .top-sectionswatchlistall{
     display: flex;
@@ -341,16 +341,13 @@ height: 170px;
     }
     .stock-tablewatchlist {
       font-size: 12px; /* Smaller font for mobile */
-      width: 100%;
+      width: 320%;
       border-collapse: collapse;
     }
     .watchlist-title {
       margin: 10px 0;
       text-align: center; /* Center-align title for mobile */
       font-size: 18px;
-    }
-    .newwmutual{
-      margin-left: 10px;
     }
   
     .watchlist-header {
@@ -609,8 +606,8 @@ margin-top: 20px;
     }
     .stock-tablewatchlist {
       font-size: 12px; /* Smaller font for mobile */
-     width: 100%; 
-     border-collapse: collapse;
+      width: 390%;
+      border-collapse: collapse;
     }
   
     /* Table Headers */
@@ -649,7 +646,7 @@ margin-top: 20px;
       text-align: center;
     }
     .newwmutual{
-      margin-left:10px ;
+      margin-left:30px ;
       
     }
     .top-sectionswatchlistsectorr{
