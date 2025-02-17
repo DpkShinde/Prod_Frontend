@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./LandingPageUnlockInvest.css";
 import landingimg1 from "../../assest/landingimg1.jpeg";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchData } from "../../Store/Slices/searchDataSlice";
+import { setSearchData } from "../../store/Slices/searchDataSlice";
 import { debounce } from "lodash";
+import { API_BASE_URL } from "../../config";
 
 const LandingPageUnlockInvest = () => {
   const [searchInputText, setSearchInputText] = useState("");
@@ -16,7 +17,7 @@ const LandingPageUnlockInvest = () => {
   //Api Call for getAll Data Related search Option
   const getAllData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/allInfo`);
+      const response = await fetch(`${API_BASE_URL}/search/allInfo`);
       const data = await response.json();
 
       //store all data into the redux store

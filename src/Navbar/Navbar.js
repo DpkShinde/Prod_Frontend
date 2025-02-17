@@ -29,12 +29,9 @@ import notiimg10 from "../assest/portra.webp";
 import logo from "../assest/Logo design (1).png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchData } from "../Store/Slices/searchDataSlice";
+import { setSearchData } from "../store/Slices/searchDataSlice";
 import { debounce } from "lodash";
 import { API_BASE_URL } from "../config";
-import { useDispatch, useSelector } from "react-redux";
-import { debounce } from "lodash";
-import { setSearchData } from "../store/slices/searchDataSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -632,7 +629,11 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-search">
-          <input type="text" placeholder="Search for Stocks, Mutual..." />
+          <input
+            type="text"
+            placeholder="Search for Stocks, Mutual..."
+            onChange={(e) => setSearchInputText(e.target.value)}
+          />
           <FaSearch className="search-icon" />
 
           {/* to display result */}

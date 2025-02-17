@@ -199,7 +199,7 @@ import StockThemesindustriesPages from "./Stockthemepages/stockthemeindustriespa
 import StockThemesindustrieslockPages from "./Stockthemepages/StockThemesindustriesPageslock/StockThemesindustriesPageslock";
 import LandingPage from "./Landingpages/Landingpage";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import {store} from './store/store';
 
 function App() {
   return (
@@ -585,15 +585,6 @@ function App() {
           element={<Goalplannerforallcalculator />}
         />
         <Route path="/houseGoalPlanner" element={<HouseGoalPlanner />} />
-
-
-
-
-
-
-
-
-
       </Routes>
     </Provider>
   );
