@@ -198,8 +198,8 @@ import BankSectorThemePagelock from "./Stockthemepages/BankSectorThemePagelock/B
 import StockThemesindustriesPages from "./Stockthemepages/stockthemeindustriespage/stockthemeindustriespage";
 import StockThemesindustrieslockPages from "./Stockthemepages/StockThemesindustriesPageslock/StockThemesindustriesPageslock";
 import LandingPage from "./Landingpages/Landingpage";
-import {Provider} from "react-redux";
-import { store } from "./Store/store";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
   return (
@@ -554,15 +554,6 @@ function App() {
           element={<Goalplannerforallcalculator />}
         />
         <Route path="/houseGoalPlanner" element={<HouseGoalPlanner />} />
-
-
-
-
-
-
-
-
-
       </Routes>
     </Provider>
   );

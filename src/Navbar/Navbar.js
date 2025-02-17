@@ -29,7 +29,7 @@ import notiimg10 from "../assest/portra.webp";
 import logo from "../assest/Logo design (1).png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchData } from "../Store/Slices/searchDataSlice";
+import { setSearchData } from "../store/Slices/searchDataSlice";
 import { debounce } from "lodash";
 import { API_BASE_URL } from "../config";
 
