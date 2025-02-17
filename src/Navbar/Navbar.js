@@ -32,9 +32,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchData } from "../Store/Slices/searchDataSlice";
 import { debounce } from "lodash";
 import { API_BASE_URL } from "../config";
-import { useDispatch, useSelector } from "react-redux";
-import { debounce } from "lodash";
-import { setSearchData } from "../store/slices/searchDataSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,13 +41,13 @@ const Navbar = () => {
   const [footerStockDropdownOpen, setFooterStockDropdownOpen] = useState(false);
   const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false);
   const [mutualFundsDropdownOpen, setMutualFundsDropdownOpen] = useState(false);
+  const [searchInputText, setSearchInputText] = useState("");
+  const [filterData, setFilterData] = useState([]);
   const [footerMutualFundsDropdownOpen, setFooterMutualFundsDropdownOpen] =
     useState(false);
   const [footerPortfolioDropdownOpen, setFooterPortfolioDropdownOpen] =
     useState(false);
   const [learnDropdownOpen, setLearnDropdownOpen] = useState(false);
-  const [searchInputText, setSearchInputText] = useState("");
-  const [filterData, setFilterData] = useState([]);
   const notifications = [
     {
       id: 1,
@@ -166,7 +163,7 @@ const Navbar = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/search/allInfo`);
       const data = await response.json();
-      console.log(data);
+      console.log(data)
 
       //store all data into the redux store
       dispatch(setSearchData(data?.data || []));
@@ -632,9 +629,12 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-search">
-          <input type="text" placeholder="Search for Stocks, Mutual..." />
+          <input
+            type="text"
+            placeholder="Search for Stocks, Mutual..."
+            onChange={(e) => setSearchInputText(e.target.value)}
+          />
           <FaSearch className="search-icon" />
-
           {/* to display result */}
           <div>
             {filterData.length > 0 ? (

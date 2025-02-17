@@ -198,8 +198,8 @@ import BankSectorThemePagelock from "./Stockthemepages/BankSectorThemePagelock/B
 import StockThemesindustriesPages from "./Stockthemepages/stockthemeindustriespage/stockthemeindustriespage";
 import StockThemesindustrieslockPages from "./Stockthemepages/StockThemesindustriesPageslock/StockThemesindustriesPageslock";
 import LandingPage from "./Landingpages/Landingpage";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import {Provider} from "react-redux";
+import { store } from "./Store/store";
 
 function App() {
   return (
@@ -496,37 +496,6 @@ function App() {
           element={<Accountsipallpage />}
         />
 
-        <Route path="/stocksSmartSIPPS" element={<StocksSmartSIPPS />} />
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/landingnavbar" element={<Landingnavbar />} />
-        <Route
-          path="/whyFinadvanceeducationnn"
-          element={<WhyFinadvanceeducationnn />}
-        />
-        <Route
-          path="/banksectorstocktheme"
-          element={<Banksectorstocktheme />}
-        />
-        <Route
-          path="/stockThemesSectorPages"
-          element={<StockThemesSectorPages />}
-        />
-        <Route
-          path="/stockthemeunlocknavbar"
-          element={<Stockthemeunlocknavbar />}
-        />
-        <Route
-          path="/bankSectorThemePagelock"
-          element={<BankSectorThemePagelock />}
-        />
-        <Route
-          path="/stockThemesindustriesPages"
-          element={<StockThemesindustriesPages />}
-        />
-        <Route
-          path="/stockThemesindustrieslockPages"
-          element={<StockThemesindustrieslockPages />}
-        />
         <Route path="/stocksSmartSIPPS" element={<StocksSmartSIPPS />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/landingnavbar" element={<Landingnavbar />} />
