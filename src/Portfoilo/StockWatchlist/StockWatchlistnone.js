@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css"; // Import FontAwesome CSS
 import "./StockWatchlistnone.css";
 import Navbar from "../../Navbar/Navbar";
-import { useSelector } from "react-redux";
-import { debounce } from "lodash";
+import { API_BASE_URL } from "../../config";
+import Cookies from 'js-cookie'
 
 const StockWatchlist = () => {
   const [stockName, setStockName] = useState("");
@@ -12,38 +12,12 @@ const StockWatchlist = () => {
   const [exchange, setExchange] = useState("NSE");
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [watchlists, setWatchlists] = useState(["Watchlist 01"]);
-  const [filterData, setFilterData] = useState([]);
   const navigate = useNavigate();
-  //getting data into redux store
-  const getStockData = useSelector((store) => store?.searchData?.searchData);
 
-  // **Debounced Search Function**
-  const debounceSearch = useCallback(
-    debounce((searchText) => {
-      if (!searchText) {
-        setFilterData([]);
-        return;
-      }
 
-      const results = getStockData.filter((item) => {
-        const company = item.company?.toLowerCase() || "";
-
-        return company.includes(searchText.toLowerCase());
-      });
-
-      setFilterData(results);
-    }, 300),
-    [getStockData]
-  );
-
-  // **Trigger Debounce on Input Change**
-  useEffect(() => {
-    debounceSearch(stockName);
-    return () => debounceSearch.cancel();
-  }, [stockName]);
 
   // Handle stock addition
-  const handleAddStock = () => {
+  const handleAddStock = async () => {
     if (stockName.trim() === "") return alert("Stock name cannot be empty!");
 
     // Check for duplicate stocks
@@ -51,18 +25,27 @@ const StockWatchlist = () => {
       return alert("This stock is already in your watchlist.");
     }
 
-    const newStock = {
-      stockName,
-      livePrice: (Math.random() * 1000).toFixed(2),
-      change: (Math.random() * 10 - 5).toFixed(2),
-      changePercent: (Math.random() * 2).toFixed(2),
-      volume: Math.floor(Math.random() * 10000),
-      high: (Math.random() * 1000).toFixed(2),
-      low: (Math.random() * 1000).toFixed(2),
-    };
+    const token = Cookies.get("jwtToken")
 
-    setStockDetails([...stockDetails, newStock]);
-    setStockName(""); // Clear input
+    try {
+      const response = await fetch(`${API_BASE_URL}/Watchlist/addStockToWatchklist`,{
+        method: "POST",
+        headers: { 
+          Authorization: `Bearer ${token}` 
+        },
+        body: JSON.stringify(stockName),
+      })
+      if (!response.ok) {
+        throw new Error("Failed to add stock");
+      }
+
+      const newStock = await response.json();
+      setStockDetails([...stockDetails, newStock]);
+      setStockName(""); // Clear input
+    } catch (error) {
+      console.error("Error adding stock:", error);
+      alert("Failed to add stock. Please try again later.");
+    }
   };
 
   // Handle adding a new watchlist
@@ -110,135 +93,106 @@ const StockWatchlist = () => {
   return (
     <div>
       <Navbar />
-      <h2 className="newwmutual">Stock Watchlist</h2>
+      <h2 className="newwmutual" >
+        Stock Watchlist
+      </h2>
       <div className="networth-tabs">
         <Link to="/stockwatchlist">
           <button
             className="networth-tab"
-            style={{ background: "#24b676", color: "white" }}
+            style={{ background: "#24b676", color: "white"}}
           >
             Stocks
           </button>
         </Link>
         <Link to="/mutualWatchlist">
-          <button
-            className="networth-tab"
-            style={{ background: "white", color: "black" }}
-          >
+          <button className="networth-tab" style={{ background: "white", color: "black" }}>
             Mutual Fund
           </button>
         </Link>
         <Link to="/goldWatchlistall">
-          <button
-            className="networth-tab"
-            style={{ background: "white", color: "black" }}
-          >
+          <button className="networth-tab" style={{ background: "white", color: "black" }}>
             Gold
           </button>
         </Link>
       </div>
-      <div>
-        <div className="stock-watchlist">
-          {/* Watchlist Section */}
-          <div className="watchlist-management">
-            {watchlists.map((watchlist, index) => (
-              <div className="watchlist-item" key={index}>
-                <input
-                  type="radio"
-                  name="watchlist"
-                  defaultChecked={index === 0}
-                  style={{
-                    width: "14px",
-                    height: "14px",
-                    accentColor: "#24b676",
-                  }}
-                />
-                <label className="watchlist-label">{watchlist}</label>
-                <button
-                  className="menu-iconwatchlist"
-                  onClick={() => toggleDropdown(index)}
-                >
-                  ⋮
-                </button>
-                {activeDropdown === index && (
-                  <div className="menu-dropdownwatchlist">
-                    <button
-                      className="menu-itemwatchlist"
-                      onClick={() => handleRenameWatchlist(index)}
-                    >
-                      Rename
-                    </button>
-                    <button
-                      className="menu-itemwatchlist"
-                      onClick={() => handleDeleteWatchlist(index)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-            <button
-              className="create-watchlist"
-              onClick={handleCreateWatchlist}
-            >
-              + Create Watchlist
-            </button>
-          </div>
-          <h2 style={{ marginLeft: "20px", fontSize: "19px" }}>
-            Add Watchlist
-          </h2>
-          {/* Input Section */}
-          <div className="watchlist-header">
-            <div className="scheme-exchange-cell">
-              <div className="input-groupwatchlist">
-                <label htmlFor="stockName">Stock Name</label>
-                <input
-                  id="stockName"
-                  type="text"
-                  placeholder="Enter stock name..."
-                  value={stockName}
-                  onChange={(e) => setStockName(e.target.value)}
-                />
-
-                {/* display input results  */}
-                <div>
-                  {filterData.length > 0 ? (
-                    <ul>
-                      {filterData.map((data) => {
-                        return <li key={data.id}>{data.company}</li>;
-                      })}
-                    </ul>
-                  ) : (
-                    stockName && <p>No result found</p>
-                  )}
+<div>
+      <div className="stock-watchlist">
+        {/* Watchlist Section */}
+        <div className="watchlist-management">
+          {watchlists.map((watchlist, index) => (
+            <div className="watchlist-item" key={index}>
+              <input
+                type="radio"
+                name="watchlist"
+                defaultChecked={index === 0}
+                style={{ width: "14px", height: "14px", accentColor: "#24b676" }}
+              />
+              <label className="watchlist-label">{watchlist}</label>
+              <button
+                className="menu-iconwatchlist"
+                onClick={() => toggleDropdown(index)}
+              >
+                ⋮
+              </button>
+              {activeDropdown === index && (
+                <div className="menu-dropdownwatchlist">
+                  <button
+                    className="menu-itemwatchlist"
+                    onClick={() => handleRenameWatchlist(index)}
+                  >
+                    Rename
+                  </button>
+                  <button
+                    className="menu-itemwatchlist"
+                    onClick={() => handleDeleteWatchlist(index)}
+                  >
+                    Delete
+                  </button>
                 </div>
-              </div>
-
-              <div className="input-groupwatchlist">
-                <label htmlFor="exchange">Exchange</label>
-                <input
-                  id="exchange"
-                  type="text"
-                  value="NSE"
-                  readOnly
-                  style={{
-                    backgroundColor: "#f9f9f9",
-                    border: "1px solid #ccc",
-                    width: "50px",
-                  }} // Optional styling for non-editable input
-                />
-              </div>
+              )}
             </div>
-
-            <button className="add-btnwatchlist" onClick={handleAddStock}>
-              + Add
-            </button>
-          </div>
+          ))}
+          <button className="create-watchlist" onClick={handleCreateWatchlist}>
+            + Create Watchlist
+          </button>
         </div>
-        {/* Content Container */}
+        <h2 style={{marginLeft:"20px",fontSize:"19px"}}>Add Watchlist</h2>
+        {/* Input Section */}
+        <div className="watchlist-header">
+        <div className="scheme-exchange-cell">
+          <div className="input-groupwatchlist">
+            <label htmlFor="stockName">Stock Name</label>
+            <input
+              id="stockName"
+              type="text"
+              placeholder="Enter stock name..."
+              value={stockName}
+              onChange={(e) => setStockName(e.target.value)}
+            />
+          </div>
 
-        <div className="content-containerwatchlist">
+          <div className="input-groupwatchlist">
+  <label htmlFor="exchange">Exchange</label>
+  <input
+    id="exchange"
+    type="text"
+    value="NSE"
+    readOnly
+    style={{ backgroundColor: "#f9f9f9", border: "1px solid #ccc",width:"50px" }} // Optional styling for non-editable input
+  />
+</div>
+</div>
+
+         
+          <button className="add-btnwatchlist" onClick={handleAddStock}>
+            + Add
+          </button>
+        </div>
+        </div>
+         {/* Content Container */}
+        
+         <div className="content-containerwatchlist">
           <div className="top-sectionswatchlistsectorr">
             {/* Filters Section */}
             <div className="filters-sectionwatchlist">
@@ -275,69 +229,72 @@ const StockWatchlist = () => {
                   accentColor: "#24b676",
                 }}
               />
-              Sector
-              <input
-                type="radio"
-                name="groupBywatchlist"
-                value="mcapwatchlist"
-                onClick={() => navigate("/stockwatchlistmcap")}
-                style={{
-                  width: "14px",
-                  height: "14px",
-                  accentColor: "#24b676",
-                }}
-              />
+               
+        Sector
+        <input
+          type="radio"
+          name="groupBywatchlist"
+          value="mcapwatchlist"
+          onClick={() => navigate("/stockwatchlistmcap")}
+          style={{
+            width: "14px",
+            height: "14px",
+            accentColor: "#24b676",
+          }}
+        />
+      
               M-Cap
             </div>
           </div>
+      
 
-          {/* Stock Table */}
-          <div className="table-containerwatchlist">
-            <table className="stock-tablewatchlist">
-              <thead>
+        {/* Stock Table */}
+        <div className="table-containerwatchlist">
+          <table className="stock-tablewatchlist">
+            <thead>
+              <tr>
+                <th>Stock Name</th>
+                <th>Live Price</th>
+                <th>Change</th>
+                <th>Change %</th>
+                <th>Volume</th>
+                <th>Today's High</th>
+                <th>Today's Low</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stockDetails.length === 0 ? (
                 <tr>
-                  <th>Stock Name</th>
-                  <th>Live Price</th>
-                  <th>Change</th>
-                  <th>Change %</th>
-                  <th>Volume</th>
-                  <th>Today's High</th>
-                  <th>Today's Low</th>
-                  <th>Actions</th>
+                  <td colSpan="8">No data found</td>
                 </tr>
-              </thead>
-              <tbody>
-                {stockDetails.length === 0 ? (
-                  <tr>
-                    <td colSpan="8">No data found</td>
+              ) : (
+                stockDetails.map((stock, index) => (
+                  <tr key={index}>
+                    <td>{stock.stockName}</td>
+                    <td>{stock.livePrice}</td>
+                    <td style={{ color: getChangeColor(stock.change) }}>
+                      {stock.change >= 0 ? `+${stock.change}` : stock.change}
+                    </td>
+                    <td>{stock.changePercent}%</td>
+                    <td>{stock.volume}</td>
+                    <td>{stock.high}</td>
+                    <td>{stock.low}</td>
+                    <td>
+                      <button
+                        className="delete-btnwatchlist"
+                        onClick={() => handleDeleteStock(index)}
+                      >
+                        <i className="fa fa-trash"></i>
+                      </button>
+                    </td>
                   </tr>
-                ) : (
-                  stockDetails.map((stock, index) => (
-                    <tr key={index}>
-                      <td>{stock.stockName}</td>
-                      <td>{stock.livePrice}</td>
-                      <td style={{ color: getChangeColor(stock.change) }}>
-                        {stock.change >= 0 ? `+${stock.change}` : stock.change}
-                      </td>
-                      <td>{stock.changePercent}%</td>
-                      <td>{stock.volume}</td>
-                      <td>{stock.high}</td>
-                      <td>{stock.low}</td>
-                      <td>
-                        <button
-                          className="delete-btnwatchlist"
-                          onClick={() => handleDeleteStock(index)}
-                        >
-                          <i className="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import "./AllocationChart.css";
 import Cookies from "js-cookie";
+import { API_BASE_URL } from "../../config";
 
 const PortfolioAllocationManagerChart = () => {
   
@@ -23,7 +24,7 @@ const PortfolioAllocationManagerChart = () => {
       const token = Cookies.get("jwtToken");
       if (!token) throw new Error("No authentication token found.");
 
-      const response = await fetch(`/myportfolio/allocationChart`, {
+      const response = await fetch(`${API_BASE_URL}/myportfolio/allocationChart`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +41,7 @@ const PortfolioAllocationManagerChart = () => {
       setPortfolio({
         stocks: data[0]?.stock_investment ?? 0,
         latestStocks: data[0]?.latest_value ?? 0,
-        mutualFunds: data[0]?.fund_investment ?? 0,
+        mutualFunds: data[0]?.mutualfund_investment ?? 0,
         latestMutualFunds: data[1]?.latest_value ?? 0,
         gold: data[2]?.invested_money ?? 0,
         latestGold: data[2]?.latest_value ?? 0,

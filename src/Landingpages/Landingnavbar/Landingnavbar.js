@@ -13,9 +13,8 @@ import { LuChartNoAxesCombined } from "react-icons/lu";
 import logo from "../../assest/Logo design (1).png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchData } from "../../store/Slices/searchDataSlice";
+import { setSearchData } from "../../Store/Slices/searchDataSlice";
 import { debounce } from "lodash";
-import { API_BASE_URL } from "../../config";
 
 const Landingnavbar = () => {
   const [stockDropdownOpen, setStockDropdownOpen] = useState(false);
@@ -47,9 +46,9 @@ const Landingnavbar = () => {
   //Api Call for getAll Data Related search Option
   const getAllData = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/search/allInfo`);
+      const response = await fetch(`http://localhost:8080/api/allInfo`);
       const data = await response.json();
-      console.log(data);
+
       //store all data into the redux store
       dispatch(setSearchData(data?.data || []));
     } catch (error) {
@@ -58,10 +57,9 @@ const Landingnavbar = () => {
   };
 
   useEffect(() => {
-    if (!getDataFromStore || getDataFromStore.length === 0) {
-      getAllData();
-    }
-  }, [getDataFromStore, dispatch]);
+    //Function Call for All data
+    getAllData();
+  }, []);
 
   //Search data from store with using debounce
   const debounceSearch = useCallback(
