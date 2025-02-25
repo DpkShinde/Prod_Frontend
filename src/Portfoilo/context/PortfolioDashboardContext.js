@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect, navigate } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { API_BASE_URL } from "../../config";
 
@@ -15,6 +16,8 @@ export const PortfolioDashboardProvider = ({ children }) => {
     const [unRealizedGains, setUnRealizedGains] = useState(0);
     const [realizedGains, setRealizedGains] = useState(0);
     const [capitalGains, setCapitalGains] = useState(0);
+
+    const navigate = useNavigate()
 
     // Function to fetch data from the backend
     const fetchData = async () => {
