@@ -1,4 +1,5 @@
-import React, { useState, useEffect, navigate } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import itiimg from '../../../src/assest/iti.png';
@@ -27,6 +28,8 @@ const Dashboardchartmain = () => {
   const [myInvestment, setMyInvestment] = useState(0);
   const [latestValue, setLatestValue] = useState(0);
   const [percentChange, setPercentChange] = useState(0);
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
       try {
