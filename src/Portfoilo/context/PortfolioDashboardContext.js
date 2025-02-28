@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { API_BASE_URL } from "../../config";
@@ -10,14 +10,13 @@ export const PortfolioDashboardProvider = ({ children }) => {
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
 
     const [myInvestment, setMyInvestment] = useState(0);
     const [latestValue, setLatestValue] = useState(0);
     const [unRealizedGains, setUnRealizedGains] = useState(0);
     const [realizedGains, setRealizedGains] = useState(0);
     const [capitalGains, setCapitalGains] = useState(0);
-
-    const navigate = useNavigate()
 
     // Function to fetch data from the backend
     const fetchData = async () => {
