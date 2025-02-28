@@ -30,6 +30,8 @@ const Dashboardchartmaindarkmode = () => {
   const [latestValue, setLatestValue] = useState(0);
   const [percentChange, setPercentChange] = useState(0);
 
+  const navigate = useNavigate()
+
   const fetchData = async () => {
       try {
         setLoading(true);
