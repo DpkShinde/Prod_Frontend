@@ -1,8 +1,9 @@
-import React, { useState, useEffect, navigate } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import itiimg from '../../../assest/iti.png';
 import './Dashboardgraphdarkmode.css'
+import { useNavigate } from 'react-router-dom';
 
 
 import Cookies from "js-cookie";
