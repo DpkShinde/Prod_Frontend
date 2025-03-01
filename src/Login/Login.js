@@ -44,20 +44,33 @@ function Login() {
     return passwordPattern.test(password);
   };
 
+  const isFormValid = validateEmail(email) && validatePassword(password);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
 
-    if (!validateEmail(email)) {
-      setEmailError("Invalid email format");
-      return;
+    let hasError = false;
+
+    if (!email.trim()) {
+      setEmailError("Please enter Email Address");
+      hasError = true;
+    } else if (!validateEmail(email)) {
+      setEmailError("Invalid email address");
+      hasError = true;
     }
 
-    if (!validatePassword(password)) {
-      setPasswordError(
-        "Password must be 8+ characters, include an uppercase letter, a number, and a special character."
-      );
+    if (!password.trim()) {
+      setPasswordError("Please enter Password");
+      hasError = true;
+    } else if (!validatePassword(password)) {
+      setPasswordError("Password must be at least 8 characters");
+      setPasswordError("Password must be at least 8 characters");
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
 
@@ -72,17 +85,14 @@ function Login() {
       };
 
       const response = await fetch(url, options);
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error("Login Failed");
+        throw new Error(data.message || "Login Failed");
       }
 
-      const data = await response.json();
-      const { jwtToken, user } = data;
+      const { jwtToken } = data;
 
-      console.log(data);
-
-      // localStorage.setItem("authData", JSON.stringify({ token: jwtToken, user }));
       Cookies.set("jwtToken", jwtToken, {
         expires: 7,
         sameSite: "Strict",
@@ -91,7 +101,7 @@ function Login() {
       navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
-      setPasswordError("Invalid email or password");
+      setPasswordError(error.message || "Invalid email or password");
     } finally {
       setIsLoading(false);
     }
@@ -146,25 +156,28 @@ function Login() {
   const handleSuccess = async (response) => {
     console.log("Google Login Success:", response);
     const token = response.credential; // Ensure we receive a valid token
-  
+
     if (!token) {
       console.error("Token not received from Google!");
       return;
     }
-  
+
     try {
       const res = await fetch(`${API_BASE_URL}/users/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
-  
+
       const data = await res.json();
       console.log("Backend Response:", data);
-  
+
       if (res.ok) {
         // Store JWT token in cookies
-        Cookies.set("jwtToken", data.jwtToken, { expires: 7, sameSite: "Strict" });
+        Cookies.set("jwtToken", data.jwtToken, {
+          expires: 7,
+          sameSite: "Strict",
+        });
         navigate("/home");
       } else {
         console.error("Authentication failed:", data.error);
@@ -172,7 +185,7 @@ function Login() {
     } catch (err) {
       console.error("Error sending token to backend:", err);
     }
-  }; 
+  };
 
   const handleFailure = (error) => {
     console.log("Login Failed: ", error);
@@ -227,7 +240,6 @@ function Login() {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                     className={emailError ? "input-error" : ""}
                   />
                   {emailError && (
@@ -257,11 +269,11 @@ function Login() {
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                   className={emailError ? "input-error" : ""}
-                />
-                {emailError && <span className="error-text">{emailError}</span>}
+                /><br />
+                {emailError && <span className="error-textlogin">{emailError}</span>}
               </div>
+
               <div className="input-container">
                 <label>Password*</label>
                 <div className="password-field">
@@ -270,7 +282,6 @@ function Login() {
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                     className={passwordError ? "input-error" : ""}
                   />
                   <span
@@ -280,10 +291,9 @@ function Login() {
 
                   </span>
                 </div>
-                {passwordError && (
-                  <span className="error-text">{passwordError}</span>
-                )}
+                {passwordError && <span className="error-textlogin">{passwordError}</span>}
               </div>
+
               <div className="login-options">
                 <div className="checksigninall">
                   <div className="signinall">
@@ -311,7 +321,15 @@ function Login() {
                 </div>
               </div>
 
-              <button type="submit" className="sign-in-btn">
+              <button
+                type="submit"
+                className="sign-in-btn"
+                style={{
+                  backgroundColor: isFormValid ? "#24b676" : "#ccc",
+                  cursor: isFormValid ? "pointer" : "not-allowed",
+                }}
+                visible={!isFormValid} // Button disabled when form is invalid
+              >
                 Log in
               </button>
 
@@ -337,7 +355,6 @@ function Login() {
               width="150"
               theme="outline"
             />
-
 
             <br />
 
