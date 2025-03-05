@@ -73,7 +73,11 @@ const StockWatchlist = () => {
 
     try {
       const response = await fetch(`${API_BASE_URL}/Watchlist/getWatchlistAssets?watchlist_id=${selectedWatchlist}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (!response.ok) throw new Error("Failed to fetch watchlist assets");
       setStockDetails(await response.json());
@@ -212,9 +216,10 @@ const StockWatchlist = () => {
         body: JSON.stringify({ name: newWatchlistTemp.name }),
       });
   
-      if (!response.ok) throw new Error("Failed to create watchlist");
-  
-      const newWatchlist = await response.json();
+      if (!response.ok){
+        throw new Error("Failed to create watchlist");
+      }else {
+        const newWatchlist = await response.json();
       console.log("New Watchlist from API:", newWatchlist);
   
       setWatchlists(prev => prev.map(w => 
@@ -222,6 +227,7 @@ const StockWatchlist = () => {
       ));
   
       setSelectedWatchlist(newWatchlist.watchlist_id); // Ensure selection updates
+      }
     } catch (error) {
       alert(error.message || "Error creating watchlist");
   
