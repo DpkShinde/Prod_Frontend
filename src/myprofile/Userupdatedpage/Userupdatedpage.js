@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdOutlineEdit } from "react-icons/md";
@@ -7,10 +7,13 @@ import Navbar from "../../Navbar/Navbar";
 import './Userupdatedpage.css'
 import FooterForAllPage from "../../FooterForAllPage/FooterForAllPage";
 import { API_BASE_URL } from "../../config";
+import { UserProfileContext } from "../../Portfoilo/context/UserProfileContext";
 
 const UserDetailsupdate = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const {user} = useContext(UserProfileContext)
 
   // Initial state (can be overwritten by updated data passed through location.state)
   const [emaillocal, setEmail]= useState('')

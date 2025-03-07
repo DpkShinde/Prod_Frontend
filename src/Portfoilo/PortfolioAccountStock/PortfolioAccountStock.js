@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../../config";
 
 import { PortfolioStocksContext } from "../context/PortfolioStocksContext";
+import FooterForAllPage from "../../FooterForAllPage/FooterForAllPage";
 
 const PortfolioAccountStock = () => {
   const location = useLocation();
@@ -22,6 +23,9 @@ const PortfolioAccountStock = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [transactionToDelete, setTransactionToDelete] = useState(null);
 
+  const handleAddTransaction = () => {
+    navigate("/stockadd");
+  }
 
   const handleEdit = (transaction) => {
     navigate("/stockupdate", { state: { transaction } });
@@ -89,7 +93,7 @@ const PortfolioAccountStock = () => {
             </div>
             <div className="portfolio-account-stock-actions-container">
               <div className="portfolio-account-stock-actions">
-                <button className="add-transaction-button">
+                <button className="add-transaction-button" onClick={() => handleAddTransaction()}>
                   + Add Transaction
                 </button>
                 <button className="my-alerts-button">My Alerts</button>
@@ -150,7 +154,7 @@ const PortfolioAccountStock = () => {
                     </span>
                     {transaction.stock_name}
                     <span className="stock-actions">
-                      <span className="action-text">Add | Sell</span>
+                      <span className="action-text" onClick={() => handleAddTransaction()}>Add | Sell</span>
                       <span className="trash-icon">
                         <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteIconClick(transaction)} />
                       </span>
@@ -267,7 +271,9 @@ const PortfolioAccountStock = () => {
         )}
 
         <Navbar />
+       
       </div>
+      <FooterForAllPage/>
     </div>
   );
 };

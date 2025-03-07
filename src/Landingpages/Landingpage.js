@@ -9,12 +9,9 @@ import LandingAboutPage from "./LandingAboutPage/LandingAboutPage";
 import FooterForAllPage from "../FooterForAllPage/FooterForAllPage";
 import Landingnavbar from "./Landingnavbar/Landingnavbar";
 import PopupUnlockLandingPage from "./PopupUnlockLandingPage/PopupUnlockLandingPage";
-import Navbar from "../Navbar/Navbar";
-import Cookies from "js-cookie";
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const token = Cookies.get('jwtToken')
 
   useEffect(() => {
     const timer = setTimeout(() => {

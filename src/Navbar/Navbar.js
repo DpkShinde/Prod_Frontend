@@ -41,11 +41,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { debounce } from "lodash";
 import { API_BASE_URL } from "../config";
-import Cookies from "js-cookie";
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-  const { user } = useContext(UserProfileContext);
+  const {user} = useContext(UserProfileContext)
+  console.log(user)
+
   const [isOpen, setIsOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [stockDropdownOpen, setStockDropdownOpen] = useState(false);
@@ -60,7 +61,7 @@ const Navbar = () => {
   const [footerPortfolioDropdownOpen, setFooterPortfolioDropdownOpen] =
     useState(false);
   const [learnDropdownOpen, setLearnDropdownOpen] = useState(false);
-
+  
   // Get search data from Redux store
   const searchData = useSelector((store) => store.searchData.searchData);
 
@@ -156,7 +157,7 @@ const Navbar = () => {
       date: "12 Nov, 2024 09:28 AM",
     },
   ];
-
+  
   const displayedNotifications = showAll
     ? notifications
     : notifications.slice(0, 10);
@@ -171,13 +172,6 @@ const Navbar = () => {
   const learnDropdownRef = useRef(null);
   const searchResultsRef = useRef(null);
 
-  // Logout function
-  const handleLogout = () => {
-    Cookies.remove("jwtToken");
-    Cookies.remove("deviceId");
-    navigate("/login");
-  };
-
   // Debounced search function that only filters existing data from Redux
   const debouncedSearch = useCallback(
     debounce((searchText) => {
@@ -185,9 +179,9 @@ const Navbar = () => {
         setFilterData([]);
         return;
       }
-
+      
       const lowerSearchText = searchText.toLowerCase().trim();
-
+      
       // Filter data from Redux without additional API calls
       const results = searchData.filter((item) => {
         const company = (item.company || "").toLowerCase();
@@ -200,7 +194,7 @@ const Navbar = () => {
           sector.includes(lowerSearchText)
         );
       });
-
+      
       setFilterData(results);
     }, 300),
     [searchData] // Only depend on searchData from Redux
@@ -217,18 +211,18 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        searchResultsRef.current &&
+        searchResultsRef.current && 
         !searchResultsRef.current.contains(event.target) &&
-        !event.target.closest(".navbar-search")
+        !event.target.closest('.navbar-search')
       ) {
         setFilterData([]);
         setSearchInputText("");
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -308,41 +302,33 @@ const Navbar = () => {
   const toggleUserDropdown = () => {
     setUserDropdownOpen(!userDropdownOpen);
   };
-
+  
   const toggleMutualFundsDropdown = () => {
     setMutualFundsDropdownOpen(!mutualFundsDropdownOpen);
   };
-
+  
   const toggleFooterMutualFundsDropdown = () => {
     setFooterMutualFundsDropdownOpen(!footerMutualFundsDropdownOpen);
   };
-
+  
   const togglePortfolioDropdown = () => {
     setPortfolioDropdownOpen(!portfolioDropdownOpen);
   };
-
+  
   const toggleFooterPortfolioDropdown = () => {
     setFooterPortfolioDropdownOpen(!footerPortfolioDropdownOpen);
   };
-
+  
   const togglelearnDropdown = () => {
     setLearnDropdownOpen(!learnDropdownOpen);
   };
 
   const renderStockDropdown = () => (
     <div className={darkMode ? "stockmenudarkerrrrmode" : "stockmenu"}>
-      <div
-        className={
-          darkMode ? "stockmenu-columndarkerrrrmode" : "stockmenu-column"
-        }
-      >
+      <div className={darkMode ? "stockmenu-columndarkerrrrmode" : "stockmenu-column"}>
         <ul>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/StockScreenerList">
                 Stock Screener
                 <p>
@@ -353,11 +339,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/beststock">
                 Best Stock
                 <p>
@@ -368,11 +350,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/highgrowth">
                 High Growth Stocks
                 <p>
@@ -383,11 +361,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/nifty50pageall">
                 Nifty 50 Companies
                 <p>
@@ -402,11 +376,7 @@ const Navbar = () => {
       <div className="stockmenu-column">
         <ul>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/nifty">
                 Nifty 100 Companies
                 <p>
@@ -417,11 +387,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/smallcap">
                 Small Cap
                 <p>
@@ -431,11 +397,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/midcap">
                 Mid Cap
                 <p>
@@ -445,15 +407,21 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/largecap">
                 Large Cap
                 <p>
                   Focus on large, established companies with stable returns.
+                </p>
+              </Link>
+            </div>
+          </li>
+          <li>
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
+              <Link to="/bankSectorThemePagelock">
+              Stock Themes
+                <p>
+                Research is key before buying any stock
                 </p>
               </Link>
             </div>
@@ -485,9 +453,9 @@ const Navbar = () => {
       </div>
     </div>
   );
-
+  
   const renderlearnDropdown = () => (
-    <div className={darkMode ? "learn-menudarkerrrrmode" : "learn-menu"}>
+    <div className={darkMode ? "learn-menudarkerrrrmode" :"learn-menu"}>
       <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
         <Link to="/stockNewsComponent">
           Stock News
@@ -529,48 +497,35 @@ const Navbar = () => {
     <div className={darkMode ? "user-menudarkerrmode" : "user-menu"}>
       <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
         <Link to="/userDetailsupdate">
-          <FaUser
-            className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"}
-          />
+          <FaUser className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"} />
           My Profile
         </Link>
       </div>
       <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
         <Link to="/help">
-          <FaCircleQuestion
-            className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"}
-          />
+          <FaCircleQuestion className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"} />
           Help Center
         </Link>
       </div>
       <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
-        <div onClick={handleLogout}>
-          <FaUserCircle
-            className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"}
-          />
+        <Link to="/">
+          {" "}
+          <FaUserCircle className={darkMode ? "dropdown-icondarkerrrmode" : "dropdown-icon"} />
           Logout
-        </div>
+        </Link>
       </div>
       <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
-        <div onClick={toggleDarkMode} style={{ cursor: "pointer" }}>
-          Dark Mode
-        </div>
+        <div onClick={toggleDarkMode} style={{cursor: 'pointer'}}>Dark Mode</div>
       </div>
     </div>
   );
 
   const renderMutualFundsDropdown = () => (
-    <div
-      className={darkMode ? "mutualstockmenudarkerrrrmode" : "mutualstockmenu"}
-    >
+    <div className={darkMode ? "mutualstockmenudarkerrrrmode" : "mutualstockmenu"}>
       <div className="stockmenu-column">
         <ul>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/mutualfund">
                 Top Rated Funds
                 <p>Focus on risk management and long-term growth.</p>
@@ -578,11 +533,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/fundscreenerregular">
                 Fund Screener
                 <p>Efficient filter and compare investment options.</p>
@@ -590,21 +541,13 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/bestsmallcapregular">
                 Best Small Cap Fund
                 <p>Strong returns by investing in high-growth opportunities.</p>
               </Link>
             </div>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/market">Equity (ETFs)</Link>
             </div>
           </li>
@@ -613,11 +556,7 @@ const Navbar = () => {
       <div className="stockmenu-column">
         <ul>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/bestgrowthregular">
                 Best Growth Fund
                 <p>Focus on high-potential growth.</p>
@@ -625,11 +564,7 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/flexregular">
                 Best Flex Cap Fund
                 <p>Invest in companies poised for future and today's growth.</p>
@@ -637,21 +572,13 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/etfregular">
                 Best ETF Fund
                 <p>Diverse and cost-effective investment strategy.</p>
               </Link>
             </div>
-            <div
-              className={
-                darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"
-              }
-            >
+            <div className={darkMode ? "dropdown-itemdarkerrmode" : "dropdown-item"}>
               <Link to="/gold"> Gold (ETFs)</Link>
             </div>
           </li>
@@ -666,16 +593,12 @@ const Navbar = () => {
     <>
       <nav className={darkMode ? "navbardarkerrrrmode" : "navbar"}>
         <div className="navbar-logo">
-          <img
-            src={`${darkMode ? Darkmodelogo : logo}`}
-            alt="FinanceShastra Logo"
-            onClick={() => navigate("/")}
-            className="logo-image"
-            style={{ cursor: "pointer" }}
-          />
+          <img src={`${darkMode ? Darkmodelogo : logo}`} alt="FinanceShastra Logo" onClick={() => navigate("/")} 
+  className="logo-image"
+  style={{cursor:"pointer"}}   />
         </div>
 
-        <ul className={darkMode ? "navbar-linksdarkerrrrmode" : "navbar-links"}>
+        <ul className={darkMode ? "navbar-linksdarkerrrrmode" :"navbar-links"}>
           <li>
             <Link to="/home">Home</Link>
           </li>
@@ -700,7 +623,9 @@ const Navbar = () => {
           >
             <Link to="#" onClick={toggleMutualFundsDropdown}>
               Mutual Funds
-              <FaChevronDown className="chevron-icon" />
+              <FaChevronDown
+                className="chevron-icon"
+              />
             </Link>
             {mutualFundsDropdownOpen && renderMutualFundsDropdown()}
           </li>
@@ -713,7 +638,9 @@ const Navbar = () => {
           >
             <Link to="#" onClick={togglelearnDropdown}>
               Learn & Insights
-              <FaChevronDown className="chevron-icon" />
+              <FaChevronDown
+                className="chevron-icon"
+              />
             </Link>
             {learnDropdownOpen && renderlearnDropdown()}
           </li>
@@ -725,7 +652,9 @@ const Navbar = () => {
           >
             <Link to="#" onClick={togglePortfolioDropdown}>
               Portfolio Manager
-              <FaChevronDown className="chevron-icon" />
+              <FaChevronDown
+                className="chevron-icon"
+              />
             </Link>
             {portfolioDropdownOpen && renderPortfolioDropdown()}
           </li>
@@ -738,24 +667,19 @@ const Navbar = () => {
             value={searchInputText}
             onChange={handleSearchInputChange}
           />
-          <FaSearch
-            className={darkMode ? "searchdarkerrrmodeicon" : "search-icon"}
-          />
+          <FaSearch className={darkMode ? "searchdarkerrrmodeicon" :"search-icon"} />
 
           {/* Show results only when there is input */}
           {searchInputText && (
-            <div
+            <div 
               ref={searchResultsRef}
-              className={`search-results ${
-                filterData.length > 0 ? "active" : ""
-              }`}
+              className={`search-results ${filterData.length > 0 ? "active" : ""}`}
             >
               {filterData.length > 0 ? (
                 <ul>
                   {filterData.map((data, index) => (
                     <li key={data.id || index}>
-                      {data.company || ""} {data.Scheme_Name || ""}{" "}
-                      {data.sector || ""}
+                      {data.company || ""} {data.Scheme_Name || ""} {data.sector || ""}
                     </li>
                   ))}
                 </ul>
@@ -773,9 +697,7 @@ const Navbar = () => {
           <div className="notificationall">
             {/* Bell Icon */}
             <FaBell
-              className={
-                darkMode ? "icon bell-darkerrmodeicon" : "icon bell-icon"
-              }
+              className={darkMode ? "icon bell-darkerrmodeicon" : "icon bell-icon"}
               onClick={() => setIsOpen(!isOpen)}
             />
 
@@ -815,15 +737,9 @@ const Navbar = () => {
           <div className={darkMode ? "psectiondarkmode" : "profile-section"}>
             <li className="" ref={userDropdownRef}>
               <Link to="#" onClick={toggleUserDropdown}>
-                <FaUserCircle
-                  className={
-                    darkMode ? "iconuser-darkerrmodeicon" : "iconuser-icon"
-                  }
-                />
+                <FaUserCircle className={darkMode ? "iconuser-darkerrmodeicon": "iconuser-icon"} />
               </Link>
-              <span className={darkMode ? "willamnamedarkmode" : "willamname"}>
-                {user}
-              </span>
+              <span className={darkMode ? "willamnamedarkmode" : "willamname"}>{user}</span>
               {userDropdownOpen && renderUserDropdown()}
             </li>
           </div>
